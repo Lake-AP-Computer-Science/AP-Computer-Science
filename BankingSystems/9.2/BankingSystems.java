@@ -20,8 +20,8 @@ public class BankingSystems {
 		double Balance, 
 		String FirstName,
 		String LastName,
-		String AccountNumber;
-		String Email;
+		String AccountNumber,
+		String Email,
 	) 
 	{
 		// Balance = Balance is not right, because you're setting a dummy to a dummy.
