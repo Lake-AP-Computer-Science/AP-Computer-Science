@@ -9,7 +9,7 @@ public class CheckingAccount extends BankingSystems {
         super();
 
         this.setNumberOfChecks(10);
-        this.setTypeOfChecks("blank");
+        this.SetTypeOfChecks("blank");
     }
 
     //overloaded constructor
@@ -26,7 +26,7 @@ public class CheckingAccount extends BankingSystems {
 		super(Balance, FirstName, LastName, AccountNumber, Email); //passes in the params into the BankingSystem's constructor
 
         this.setNumberOfChecks(NumberOfChecks);
-        this.setTypeOfChecks(TypeOfChecks);
+        this.SetTypeOfChecks(TypeOfChecks);
 	}	
 
     //Get NumberOfChecks
@@ -42,13 +42,13 @@ public class CheckingAccount extends BankingSystems {
     }
 
     //Get TypeOfChecks
-    public String getTypeOfChecks()
+    public String GetTypeOfChecks()
     {
         return this.TypeOfChecks;
     }
 
     //Set TypeOfChecks
-    public setTypeOfChecks(String TypeOfChecks)
+    public SetTypeOfChecks(String TypeOfChecks)
     {
         this.TypeOfChecks = TypeOfChecks;
     }
@@ -57,7 +57,16 @@ public class CheckingAccount extends BankingSystems {
     {
         return super.toString() + 
             "\n Number Of Checks: " + this.getNumberOfChecks() +
-            "\n Type Of Checks: " + this.getTypeOfChecks();
+            "\n Type Of Checks: " + this.GetTypeOfChecks();
+    }
+
+    //thanks max
+    public boolean equals(Object O)
+    {
+        CheckingAccount OtherAccount = (CheckingAccount)O;
+
+        return this.getNumChecks() == OtherAccount.getNumChecks();
+
     }
 
 }
