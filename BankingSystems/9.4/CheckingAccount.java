@@ -1,10 +1,10 @@
+import javax.swing.JOptionPane;
 
 public class CheckingAccount extends BankingSystems {
     private int NumberOfChecks;
     private String TypeOfChecks;
 
-    //static (non-instanciated) variables
-    static final int WITHDRAW_LIMIT;
+    static final int WITHDRAW_LIMIT = 10000;
     static int FEE;
 
     //default constructor
@@ -40,7 +40,7 @@ public class CheckingAccount extends BankingSystems {
     }
 
     //Set NumberOfChecks
-    public setNumberOfChecks(int NumberOfChecks)
+    public void setNumberOfChecks(int NumberOfChecks)
     {
         this.NumberOfChecks = NumberOfChecks;
     }
@@ -52,17 +52,17 @@ public class CheckingAccount extends BankingSystems {
     }
 
     public double Deposit(double Amount)
-    {
-        //limit of 15k before needing approval
+    {	
+    	return 0.0; //do work here
     }
 
     public double Withdraw(double Amount)
     {
-        //10k is withdraw limit make sure it is sufficient funds and don't exceed withdraw limit else ask approval. If the approval is granted then take away a surcharge for fee, else if it is not approved withdraw no money
+    	return 0.0; //do work here
     }
 
     //Set TypeOfChecks
-    public SetTypeOfChecks(String TypeOfChecks)
+    public void SetTypeOfChecks(String TypeOfChecks)
     {
         this.TypeOfChecks = TypeOfChecks;
     }
@@ -78,7 +78,7 @@ public class CheckingAccount extends BankingSystems {
     public boolean equals(Object O)
     {
         CheckingAccount OtherAccount = (CheckingAccount)O;
-        return this.getNumChecks() == OtherAccount.getNumChecks();
+        return this.getNumberOfChecks() == OtherAccount.getNumberOfChecks();
     }
 
 }
