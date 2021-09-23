@@ -7,7 +7,7 @@ with open(str(os.path.abspath(__file__)).replace("Main.py", "Output.java"), "w+"
     f.write(
 """
 //Get __VarName__
-public __Type__ get__VarName__()
+public void  __Type__ get__VarName__()
 {
     return this.__VarName__;
 }

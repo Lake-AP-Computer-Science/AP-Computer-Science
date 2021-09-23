@@ -21,7 +21,7 @@ public class BankingSystems {
 		String FirstName,
 		String LastName,
 		String AccountNumber,
-		String Email,
+		String Email
 	) 
 	{
 		// Balance = Balance is not right, because you're setting a dummy to a dummy.
@@ -48,7 +48,7 @@ public class BankingSystems {
 	}
 	public String GetAccountNumber()
 	{
-		return this.Account;
+		return this.AccountNumber;
 	}
 	public String GetEmail()
 	{
@@ -58,13 +58,13 @@ public class BankingSystems {
 	//deposit and withdraw functions
 	public double Deposit(double Amount)
     {
-        this.SetBalance(this.GetBalance() + amount);
+        this.SetBalance(this.GetBalance() + Amount);
         return this.GetBalance();
     }
 
     public double Withdraw(double Amount)
     {
-        this.SetBalance(this.GetBalance() - amount);
+        this.SetBalance(this.GetBalance() - Amount);
         return this.GetBalance();
     }
 
@@ -96,7 +96,7 @@ public class BankingSystems {
 	{
 		return "Name: " + this.GetFirstName() + " " + this.GetLastName() + 
 			"\nBalance: " + this.GetBalance() +
-			"\nAccount Number: " + this.GetAccountNumber()
+			"\nAccount Number: " + this.GetAccountNumber() +
 			"\nEmail: " + this.GetEmail();
 	}
 
@@ -115,7 +115,7 @@ public class BankingSystems {
 
 	public boolean equals(Object OtherAccount)
 	{
-		BankingSystems OtherAccount = (BankingSystems)OtherAccount; //cast the other object to a bankaccount
+		BankingSystems CastedAccount = (BankingSystems)OtherAccount; //cast the other object to a bankaccount
 		
 		/*
 		What is casting?
@@ -128,10 +128,10 @@ public class BankingSystems {
 		object passed in is one of BankingSystems before calling its getBalance()
 		*/
 		
-		if (OtherAccount == null) //ensure the object didn't fail cast and is not null
+		if (CastedAccount == null) //ensure the object didn't fail cast and is not null
 			return false;
 
-		return this.GetBalance() == OtherAccount.GetBalance(); //if it is true return true else return false
+		return this.GetBalance() == CastedAccount.GetBalance(); //if it is true return true else return false
 	}
 
 }

@@ -1,9 +1,10 @@
+import javax.swing.JOptionPane;
 
 public class SavingAccount extends BankingSystems {
     private double InterestRate;
 
     //Constructors
-    public SavingsAccount()
+    public SavingAccount()
     {
         super(); 
         /*
@@ -25,7 +26,7 @@ public class SavingAccount extends BankingSystems {
     }
 
     //extended constructor with refrence to BankingSystems
-    public BankingSystems(
+    public SavingAccount(
 		double Balance, 
 		String FirstName,
 		String LastName,
@@ -41,15 +42,19 @@ public class SavingAccount extends BankingSystems {
     //overwritten child methods
     public double Deposit(double Amount)
     {
-        if (Amount < 5000) //precondition for savings account ONLY
+        if (Amount < 5000)//precondition for savings account ONLY
+        {
             super.Deposit(Amount); //call the deposit in the parent class
             //can't use this.Deposit(Amount)
             //that will be infinate loop of this method calling itself if its amount is less than 5000
+        }
         else
+        {
             String ans = JOptionPane.showInputDialog(null, "Type approve if it gets approved!");
 
-            if ans.equals("approve") //if approved go deposit again. Using .equals because string is an object
+            if (ans.equals("approve")) //if approved go deposit again. Using .equals because string is an object
                 super.Deposit(Amount); 
+        }
 
         return this.GetBalance(); //inherited from parent
     }
@@ -57,13 +62,16 @@ public class SavingAccount extends BankingSystems {
     public double Withdraw(double Amount)
     {
         if (Amount < this.GetBalance())
+        {
             super.Withdraw(Amount); //early return, the rest won't run
-        
+        }
         else if (Amount == this.GetBalance())
+        {
             //close account cause you broke
             String ans = JOptionPane.showInputDialog(null, "Type close to close the account because you are now broke");
             if (ans.equals("close"))
                 super.Withdraw(Amount);
+        }
         
         return this.GetBalance();
     } 
@@ -75,9 +83,9 @@ public class SavingAccount extends BankingSystems {
     }
 
     //Setters
-    public void SetInterestRate(InterestRate)
+    public void SetInterestRate(double InterestRate)
     {
-        self.InterestRate = InterestRate;
+        this.InterestRate = InterestRate;
     }
 
     /*
