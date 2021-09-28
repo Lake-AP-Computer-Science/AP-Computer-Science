@@ -1,12 +1,12 @@
 
-//Get TypeOfChecks
-public String getTypeOfChecks()
+/*Get Variable*/
+public Type GetVariable()
 {
-    return this.TypeOfChecks;
+    return this.Variable;
 }
 
-//Set TypeOfChecks
-public setTypeOfChecks(String TypeOfChecks)
+/*Set Variable*/
+public void SetVariable(Type Variable)
 {
-    this.TypeOfChecks = TypeOfChecks;
+    this.Variable = Variable;
 }
