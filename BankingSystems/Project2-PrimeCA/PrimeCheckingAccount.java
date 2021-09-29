@@ -36,11 +36,11 @@ public class PrimeCheckingAccount extends CheckingAccount{
 		
 		if (RewardsCount >= 5) 
 		{
-			this.Deposit(REWARD);
+			super.Deposit(REWARD);
 			this.SetRewardsCount(0);
 		}
 			
-		return this.Deposit(Amount);
+		return super.Deposit(Amount);
     }
 
     public double Withdraw(double Amount)
