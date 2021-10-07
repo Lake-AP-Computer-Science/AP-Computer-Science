@@ -8,14 +8,7 @@ public class StringReview {
 	{
 		ArrayList<Double> Numbers = new ArrayList<Double>();
 		
-		for (String Word : Article.split(" "))//for each phrase split between spaces
-		{
-			if (Word.matches(".*\\d.*"))
-			{
-				Numbers.add(Double.parseDouble(Word.replaceAll("([^0-9])", "")));
-			}
-			
-		}
+		Numbers = Article.replaceAll("\\D", " ");
 		
 		return Numbers;
 	}
