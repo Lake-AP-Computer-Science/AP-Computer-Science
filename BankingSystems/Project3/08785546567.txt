@@ -1,0 +1,10 @@
+Bank Of Cowland
+BankAccount@5e265ba4
+Name: Larry Johnson
+Balance: 1000.0
+Account Number: 08785546567
+Email: LarryJohnson@gmail.com
+-------Transaction History-------
+   [Date]   [Type] [Amount]
+2021-10-27 -4000.0 Balance: 1000.0
+2021-10-27 +300.0 Balance: 1000.0
