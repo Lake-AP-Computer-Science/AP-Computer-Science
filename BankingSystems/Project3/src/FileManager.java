@@ -47,10 +47,12 @@ public class FileManager
         {
 			ArrayList<String> currentContents = this.reader.getList();
 			String withdrawOrDeposit = (transactionType.equals("withdraw")) ? "-" : "+";
-			String oneLine = java.time.LocalDate.now() + " " + withdrawOrDeposit + amount + " Balance: " + this.account.getBalance();
+			String oneLine = java.time.LocalDate.now() + " $" + withdrawOrDeposit + amount + " Balance: $" + this.account.getBalance();
 			currentContents.add(oneLine);
 			String writeString = String.join("\n", currentContents);
 			writer.writeToFile(writeString);
+			currentContents.set(Double.parseDouble(currentContents.get(3).replace("Balance: ", "")) + Double.parseDouble(withdrawOrDeposit + amount));
+			
 	        return true;
         }
 		catch(Exception error)
