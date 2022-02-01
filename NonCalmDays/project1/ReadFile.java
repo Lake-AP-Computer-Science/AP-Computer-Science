@@ -1,10 +1,12 @@
 package problem1;
+import APCompSci3.problem1.Signal;
+
 import java.io.*;
 import java.util.ArrayList;
 
 
 
-public class ReadFile 
+public class ReadFile
 {
 	
 	private String fileName;
@@ -15,21 +17,24 @@ public class ReadFile
 	}
 	
 	
-	public ArrayList<String>getList() throws Exception
+	public ArrayList<Signal>getSignals() throws Exception
 	{
-		ArrayList<String>list = new ArrayList<String>();
+		ArrayList<Signal>list = new ArrayList<Signal>();
 		
 		FileReader fstream = new FileReader(fileName);
 		BufferedReader in = new BufferedReader(fstream);
 		
-		String value = ""; 
-		while( value != null)
+		String data = "";
+		String strength = "";
+		while( data != null)
 		{
-		    value = in.readLine();
-		    if(value != null)
-		    {
-		    	list.add(value);
-		    }
+			data = in.readLine();
+			strength = in.readLine();
+			if(data != null)
+			{
+				Signal s = new Signal(data, Integer.parseInt(strength));
+				list.add(s);
+			}
 		}
 		
 		in.close();
@@ -37,11 +42,7 @@ public class ReadFile
 		return list;
 	}
 	
-	public ArrayList<Signal> getSignals()
-	{
-		
-	}
 	
-
+	
 	
 }
