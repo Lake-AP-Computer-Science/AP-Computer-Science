@@ -1,6 +1,7 @@
 package problem1;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class SignalBST 
 {
@@ -139,59 +140,54 @@ public class SignalBST
 		return MessageNodes;
 	}
 	
-	private void getBFS(Node At, ArrayList<ArrayList<Node>> All)
+	private int GetDepth(Node n, int Generations)
 	{
+		if (n == null)
+			return Generations;
 		
-		ArrayList<Node> Queue = new ArrayList<Node>();
+		int L = GetDepth(n.GetLeftChild(), Generations + 1);
+		int R = GetDepth(n.GetRightChild(), Generations + 1);
 		
-		Node Left, Right = null;
+		return L > R ? L : R;
 		
-		if (At != null)
-		{
-			Left = At.GetLeftChild();
-			Right = At.GetRightChild();
-		}
-		else
-		{
-			Left = null;
-			Right = null;
-		}
-		
-		//Prefer left then right
-		
-		if (Left != null)
-			Queue.add(Left);
-		else //if (Right != null)
-			Queue.add(new Node(new Signal("", -1)));
-		
-		if (Right != null)
-			Queue.add(Right);
-		else //if (Left != null)
-			Queue.add(new Node(new Signal("", -1)));
-		
-		if (At != null)
-		{
-			getBFS(At.GetLeftChild(), All);
-			getBFS(At.GetRightChild(), All);
-			//All.add(Queue);
-		}
-		All.add(Queue);
 	}
 	
-	public void PrettyPrint(Node At)
+	private int GetExpectedAtGeneration(int Generation)
+	{
+		return (int) Math.pow(2, Generation);
+	}
+	
+	private void getBFS(Node At, ArrayList<ArrayList<Node>> Queue, int Generation)
+	{
+		if (Generation == GetDepth(GetRoot(), 0) || At == null)
+			return;
+		
+		Queue.get(Generation).add(At);
+		
+		getBFS(At.GetLeftChild(), Queue, Generation + 1);
+		getBFS(At.GetRightChild(), Queue, Generation + 1);
+	}
+	
+	public void PrettyPrint()
 	{
 		//implementing breadth-first search to print generations
 		
 		ArrayList<ArrayList<Node>> C = new ArrayList<ArrayList<Node>>();
 		
-		getBFS(At, C);
-		
-		//int T = 1;
-		//int J = 0;
-		
-		/*for (int i = 0; i < C.size(); i++)
+		for (int i = 0; i < GetDepth(GetRoot(), 0); ++i)
 		{
-			/*if (i != 0)
+			C.add(new ArrayList<Node>());
+		}
+		
+		getBFS(GetRoot(), C, 0);
+		
+		/*System.out.println(C);
+		
+		int GenerationCounter = 1;
+		
+		for (int i = 0; i < C.size(); i++)
+		{
+			if (i != 0)
 			{
 				if (i % 2 == 0)
 					System.out.print(" ⟂ ");
@@ -199,14 +195,13 @@ public class SignalBST
 					System.out.print("   ");
 			}
 			
-			if (i == T + J)
+			if (i == GetExpectedAtGeneration(GenerationCounter) - 1)
 			{
+				++GenerationCounter;
 				System.out.println();
-				T *= 2;
-				J = i;
 			}
 			
-			if (C.get(i).GetStrength() == -1)
+			if (C.get(i) == null)
 			{
 				System.out.print(" ");
 				continue;
@@ -216,16 +211,15 @@ public class SignalBST
 			System.out.print(C.get(i).GetStrength() + " ");
 		}*/
 		
-		System.out.println("Tip: " + GetRoot());
-		
 		for (ArrayList<Node> List : C)
 		{
 			for (Node S : List)
 			{
-				System.out.print(S.GetStrength() + " ");
+				System.out.print(S);
 			}
 			System.out.println();
 		}
+		
 	}
 
 	public static void main(String[] args) {
@@ -245,7 +239,9 @@ public class SignalBST
 		
 		//System.out.println(Tree.GetNodes());
 		
-		Tree.PrettyPrint(Tree.GetRoot());
+		//System.out.println(Tree.GetDepth(Tree.GetRoot(), 0));
+		
+		Tree.PrettyPrint();
 		
 	}
 	
