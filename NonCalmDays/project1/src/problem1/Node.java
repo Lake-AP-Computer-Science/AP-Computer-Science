@@ -101,7 +101,7 @@ public class Node
 	
 	public String toString()
 	{
-		String Return = "Node, Signals: ";
+		String Return = "";
 		for (Signal S : Signals)
 		{
 			Return += S.toString() + " ";

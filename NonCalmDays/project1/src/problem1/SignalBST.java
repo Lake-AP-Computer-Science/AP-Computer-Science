@@ -1,6 +1,7 @@
 package problem1;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class SignalBST 
 {
@@ -139,35 +140,50 @@ public class SignalBST
 		return MessageNodes;
 	}
 	
-	private ArrayList<Node> getBreadthFirst(Node At, ArrayList<Node> Queue)
+	private int GetDepth(Node n, int Generations)
 	{
+		if (n == null)
+			return Generations;
 		
-		if (At == null)
-			return Queue;
+		int L = GetDepth(n.GetLeftChild(), Generations + 1);
+		int R = GetDepth(n.GetRightChild(), Generations + 1);
 		
-		//System.out.println("Left: " + At.GetLeftChild());
-		//System.out.println("Right: " + At.GetRightChild());
+		return L > R ? L : R;
 		
-		Queue.add(At.GetLeftChild());
-		Queue.add(At.GetRightChild());
-		
-		getBreadthFirst(At.GetLeftChild(), Queue);
-		getBreadthFirst(At.GetRightChild(), Queue);
-		
-		return Queue;
 	}
 	
-	public void PrettyPrint(Node At)
+	private int GetExpectedAtGeneration(int Generation)
+	{
+		return (int) Math.pow(2, Generation);
+	}
+	
+	private void getBFS(Node At, ArrayList<ArrayList<Node>> Queue, int Generation)
+	{
+		if (Generation == GetDepth(GetRoot(), 0) || At == null)
+			return;
+		
+		Queue.get(Generation).add(At);
+		
+		getBFS(At.GetLeftChild(), Queue, Generation + 1);
+		getBFS(At.GetRightChild(), Queue, Generation + 1);
+	}
+	
+	public void PrettyPrint()
 	{
 		//implementing breadth-first search to print generations
 		
-		ArrayList<Node> C = new ArrayList<Node>();
-		C.add(At);
+		ArrayList<ArrayList<Node>> C = new ArrayList<ArrayList<Node>>();
 		
-		getBreadthFirst(At, C);
+		for (int i = 0; i < GetDepth(GetRoot(), 0); ++i)
+		{
+			C.add(new ArrayList<Node>());
+		}
 		
-		int T = 1;
-		int J = 0;
+		getBFS(GetRoot(), C, 0);
+		
+		/*System.out.println(C);
+		
+		int GenerationCounter = 1;
 		
 		for (int i = 0; i < C.size(); i++)
 		{
@@ -179,22 +195,31 @@ public class SignalBST
 					System.out.print("   ");
 			}
 			
-			if (i == T + J)
+			if (i == GetExpectedAtGeneration(GenerationCounter) - 1)
 			{
+				++GenerationCounter;
 				System.out.println();
-				T *= 2;
-				J = i;
 			}
 			
 			if (C.get(i) == null)
 			{
-				System.out.print("nil");
+				System.out.print(" ");
 				continue;
 			}
 			
 			//System.out.print(C.get(i).toString());
-			System.out.print(C.get(i).GetStrength());
+			System.out.print(C.get(i).GetStrength() + " ");
+		}*/
+		
+		for (ArrayList<Node> List : C)
+		{
+			for (Node S : List)
+			{
+				System.out.print(S);
+			}
+			System.out.println();
 		}
+		
 	}
 
 	public static void main(String[] args) {
@@ -214,7 +239,9 @@ public class SignalBST
 		
 		//System.out.println(Tree.GetNodes());
 		
-		Tree.PrettyPrint(Tree.GetRoot());
+		//System.out.println(Tree.GetDepth(Tree.GetRoot(), 0));
+		
+		Tree.PrettyPrint();
 		
 	}
 	
