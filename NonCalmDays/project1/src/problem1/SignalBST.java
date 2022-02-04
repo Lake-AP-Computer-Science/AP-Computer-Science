@@ -139,39 +139,59 @@ public class SignalBST
 		return MessageNodes;
 	}
 	
-	private ArrayList<Node> getBreadthFirst(Node At, ArrayList<Node> Queue)
+	private void getBFS(Node At, ArrayList<ArrayList<Node>> All)
 	{
 		
-		if (At == null)
-			return Queue;
+		ArrayList<Node> Queue = new ArrayList<Node>();
 		
-		//System.out.println("Left: " + At.GetLeftChild());
-		//System.out.println("Right: " + At.GetRightChild());
+		Node Left, Right = null;
 		
-		Queue.add(At.GetLeftChild());
-		Queue.add(At.GetRightChild());
+		if (At != null)
+		{
+			Left = At.GetLeftChild();
+			Right = At.GetRightChild();
+		}
+		else
+		{
+			Left = null;
+			Right = null;
+		}
 		
-		getBreadthFirst(At.GetLeftChild(), Queue);
-		getBreadthFirst(At.GetRightChild(), Queue);
+		//Prefer left then right
 		
-		return Queue;
+		if (Left != null)
+			Queue.add(Left);
+		else //if (Right != null)
+			Queue.add(new Node(new Signal("", -1)));
+		
+		if (Right != null)
+			Queue.add(Right);
+		else //if (Left != null)
+			Queue.add(new Node(new Signal("", -1)));
+		
+		if (At != null)
+		{
+			getBFS(At.GetLeftChild(), All);
+			getBFS(At.GetRightChild(), All);
+			//All.add(Queue);
+		}
+		All.add(Queue);
 	}
 	
 	public void PrettyPrint(Node At)
 	{
 		//implementing breadth-first search to print generations
 		
-		ArrayList<Node> C = new ArrayList<Node>();
-		C.add(At);
+		ArrayList<ArrayList<Node>> C = new ArrayList<ArrayList<Node>>();
 		
-		getBreadthFirst(At, C);
+		getBFS(At, C);
 		
-		int T = 1;
-		int J = 0;
+		//int T = 1;
+		//int J = 0;
 		
-		for (int i = 0; i < C.size(); i++)
+		/*for (int i = 0; i < C.size(); i++)
 		{
-			if (i != 0)
+			/*if (i != 0)
 			{
 				if (i % 2 == 0)
 					System.out.print(" ⟂ ");
@@ -186,14 +206,25 @@ public class SignalBST
 				J = i;
 			}
 			
-			if (C.get(i) == null)
+			if (C.get(i).GetStrength() == -1)
 			{
-				System.out.print("nil");
+				System.out.print(" ");
 				continue;
 			}
 			
 			//System.out.print(C.get(i).toString());
-			System.out.print(C.get(i).GetStrength());
+			System.out.print(C.get(i).GetStrength() + " ");
+		}*/
+		
+		System.out.println("Tip: " + GetRoot());
+		
+		for (ArrayList<Node> List : C)
+		{
+			for (Node S : List)
+			{
+				System.out.print(S.GetStrength() + " ");
+			}
+			System.out.println();
 		}
 	}
 
