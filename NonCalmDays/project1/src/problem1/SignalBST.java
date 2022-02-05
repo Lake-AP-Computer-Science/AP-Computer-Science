@@ -138,17 +138,13 @@ public class SignalBST
 		return MessageNodes;
 	}
 	
-	@SuppressWarnings("unchecked")
-	private int GetDepth(Node n, int Generations, ArrayList<Integer> DoneBefore)
+	private int GetDepth(Node n, int Generations)
 	{
 		if (n == null)
 			return Generations;
 		
-		if (!DoneBefore.contains(n.GetStrength()))
-			DoneBefore.add(n.GetStrength());
-		
-		int L = GetDepth(n.GetLeftChild(), Generations + 1, (ArrayList<Integer>)DoneBefore.clone());
-		int R = GetDepth(n.GetRightChild(), Generations + 1, (ArrayList<Integer>)DoneBefore.clone());
+		int L = GetDepth(n.GetLeftChild(), Generations + 1);
+		int R = GetDepth(n.GetRightChild(), Generations + 1);
 		
 		return L > R ? L : R;
 		
@@ -156,7 +152,7 @@ public class SignalBST
 	
 	private void getBFS(Node At, ArrayList<ArrayList<Node>> Queue, int Generation)
 	{
-		if (Generation == GetDepth(GetRoot(), 0, new ArrayList<Integer>()) || At == null)
+		if (Generation == GetDepth(GetRoot(), 0) || At == null)
 			return;
 		
 		Queue.get(Generation).add(At);
@@ -171,7 +167,9 @@ public class SignalBST
 		
 		ArrayList<ArrayList<Node>> C = new ArrayList<ArrayList<Node>>();
 		
-		for (int i = 0; i < GetDepth(GetRoot(), 0, new ArrayList<Integer>()); ++i)
+		ArrayList<Integer> Used = new ArrayList<Integer>();
+		
+		for (int i = 0; i < GetDepth(GetRoot(), 0); ++i)
 		{
 			C.add(new ArrayList<Node>());
 		}
@@ -182,7 +180,11 @@ public class SignalBST
 		{
 			for (Node S : List)
 			{
-				System.out.print(S);
+				if (!Used.contains(S.GetStrength()))
+				{
+					Used.add(S.GetStrength());
+					System.out.print(S);
+				}
 			}
 			System.out.println();
 		}
