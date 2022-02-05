@@ -36,6 +36,18 @@ public class Node
 		Signals.add(S);
 	}
 	
+	public void Prune()
+	{
+		for (int i = Signals.size() - 1; i >= 0; --i)
+		{
+			if (Signals.get(i).GetCount() == 0)
+			{
+				Signals.remove(i);
+				--i;
+			}
+		}
+	}
+	
 	public void Add(Node N)
 	{
 		if(N.GetStrength() < GetStrength())
@@ -68,13 +80,16 @@ public class Node
 	
 	public void Remove(Signal S)
 	{
-		if (Signals.contains(S)) //if already exists with the same message just decrement count
+		boolean Contains = false;
+		for (Signal SN : Signals)
 		{
-			S.DecrementCount();
-			return;
+			if (SN.GetMessage().equals(S.GetMessage()))
+			{
+				Contains = true;
+				SN.DecrementCount();
+				break;
+			}
 		}
-		
-		Signals.remove(S);
 	}
 	
 	public Node GetLeftChild()
@@ -114,11 +129,14 @@ public class Node
 	
 	public String toString()
 	{
-		String Return = "Strength: " + GetStrength();
+		String Return = "\t\t Strength: " + GetStrength() + "  Signals: [";
 		for (Signal S : Signals)
 		{
-			Return += S.toString() + " ";
+			Return += S.toString() + ", ";
 		}
+		
+		Return += "]";
+		
 		return Return;
 	}
 }
