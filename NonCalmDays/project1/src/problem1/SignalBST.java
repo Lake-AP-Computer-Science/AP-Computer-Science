@@ -375,11 +375,13 @@ public class SignalBST
  * [		 Strength: 2  Signals: [ "Cow" x1, ]]
  * [1, 5]
  * [2]
+ *  5
+ *  2
  * */
 		
 /* Test case 7 - Combine Signal BST */
 
-		//tree
+//		//tree
 //		Signal FirstSignal = new Signal("Cow", 1); // root
 //		Node First = new Node(FirstSignal);
 //		
@@ -428,6 +430,23 @@ public class SignalBST
 //		System.out.println("After:");
 //		Tree1.PrettyPrint();
 		
+/* Expected output (*s are just for comments continuation):
+ * 
+ *         Before:
+ * First:
+ * 		 Strength: 1  Signals: [ "Cow" x1, ]
+ * 		 Strength: 4  Signals: [ "Bull" x2,  "Calf" x1, ]
+ * Second:
+ * 		 Strength: 1  Signals: [ "Combine into 1" x1, ]
+ * 		 Strength: 3  Signals: [ "New Node At 3" x1, ]
+ * 		 Strength: 4  Signals: [ "Bull" x1, ]
+ * 		 Strength: 9  Signals: [ "Unique" x1, ]
+ * After:
+ * 		 Strength: 1  Signals: [ "Cow" x1,  "Combine into 1" x1, ]
+ * 		 Strength: 4  Signals: [ "Bull" x3,  "Calf" x1, ]
+ * 		 Strength: 3  Signals: [ "New Node At 3" x1, ]		 Strength: 9  Signals: [ "Unique" x1, ]
+ */
+		
 		
 /* The following test cases use Lake's 10-page-on-google-docs test case
  * which I have composed into characters to signify different patterns,
@@ -442,9 +461,7 @@ public class SignalBST
 //		
 //		Nodes.remove(0);
 //		
-//		Nodes.subList(0, 10);
-//		
-//		//Tree.add(Nodes.get(0));
+//		Nodes.subList(0, 10); //for the first 10
 //		
 //		for (Node N : Nodes)
 //		{
@@ -453,7 +470,7 @@ public class SignalBST
 //		
 //		Tree.PrettyPrint();
 		
-		/* Expected output (*s are just for comments continuation):
+		/* Expected output (for the first 10) (*s are just for comments continuation):
 		 * 
 		 * Strength: 4  Signals: [ "A" x6,  "F" x1,  "B" x5, ]
 		 * Strength: 1  Signals: [ "A" x2,  "C" x4,  "F" x7,  "K" x5, ]		 Strength: 10  Signals: [ "B" x7,  "F" x6,  "I" x8, ]
