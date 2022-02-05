@@ -1,7 +1,6 @@
 package problem1;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SignalBST 
 {
@@ -381,53 +380,53 @@ public class SignalBST
 /* Test case 7 - Combine Signal BST */
 
 		//tree
-		Signal FirstSignal = new Signal("Cow", 1); // root
-		Node First = new Node(FirstSignal);
-		
-		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
-		Node Second = new Node(SecondSignal);
-		
-		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
-		Node Third = new Node(ThirdSignal);
-		
-		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
-		Node Forth = new Node(ForthSignal);
-		
-		SignalBST Tree1 = new SignalBST(First);
-		
-		Tree1.add(Second);
-		Tree1.add(Third);
-		Tree1.add(Forth);
-		
-		//next tree
-		FirstSignal = new Signal("Combine into 1", 1); //root
-		First = new Node(FirstSignal);
-		
-		SecondSignal = new Signal("New Node At 3", 3); //makes a new node at 3 with the new message
-		Second = new Node(SecondSignal);
-		
-		ThirdSignal = new Signal("Bull", 4); //should increment bull from tree 1
-		Third = new Node(ThirdSignal);
-		
-		ForthSignal = new Signal("Unique", 9); //add another message into fourth node
-		Forth = new Node(ForthSignal);
-		
-		SignalBST Tree2 = new SignalBST(First);
-		
-		Tree2.add(Second);
-		Tree2.add(Third);
-		Tree2.add(Forth);
-		
-		System.out.println("        Before:");
-		System.out.println("First:");
-		Tree1.PrettyPrint();
-		System.out.println("Second:");
-		Tree2.PrettyPrint();
-		
-		Tree1.combine(Tree2);
-		
-		System.out.println("After:");
-		Tree1.PrettyPrint();
+//		Signal FirstSignal = new Signal("Cow", 1); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree1 = new SignalBST(First);
+//		
+//		Tree1.add(Second);
+//		Tree1.add(Third);
+//		Tree1.add(Forth);
+//		
+//		//next tree
+//		FirstSignal = new Signal("Combine into 1", 1); //root
+//		First = new Node(FirstSignal);
+//		
+//		SecondSignal = new Signal("New Node At 3", 3); //makes a new node at 3 with the new message
+//		Second = new Node(SecondSignal);
+//		
+//		ThirdSignal = new Signal("Bull", 4); //should increment bull from tree 1
+//		Third = new Node(ThirdSignal);
+//		
+//		ForthSignal = new Signal("Unique", 9); //add another message into fourth node
+//		Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree2 = new SignalBST(First);
+//		
+//		Tree2.add(Second);
+//		Tree2.add(Third);
+//		Tree2.add(Forth);
+//		
+//		System.out.println("        Before:");
+//		System.out.println("First:");
+//		Tree1.PrettyPrint();
+//		System.out.println("Second:");
+//		Tree2.PrettyPrint();
+//		
+//		Tree1.combine(Tree2);
+//		
+//		System.out.println("After:");
+//		Tree1.PrettyPrint();
 		
 		
 /* The following test cases use Lake's 10-page-on-google-docs test case
