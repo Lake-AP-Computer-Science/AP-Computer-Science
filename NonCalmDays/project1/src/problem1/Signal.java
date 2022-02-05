@@ -4,7 +4,7 @@ public class Signal
 {
     private String Message = "";
     private int Strength = 0;
-    private int Count = 0;
+    private int Count = 1;
 	
     public Signal(String Message, int Strength) {
         this.Message = Message;
@@ -50,6 +50,6 @@ public class Signal
     
     public String toString()
     {
-		return "Strength: " + Strength + " Message: " + Message;
+		return /*"" + Strength +*/ " \"" + Message + "\" x" + Count; //no strength bc node prints it already
     }
 }

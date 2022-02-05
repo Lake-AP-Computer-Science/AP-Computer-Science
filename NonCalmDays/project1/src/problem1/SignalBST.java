@@ -14,16 +14,16 @@ public class SignalBST
 	//adds a node to the SignalBST according to the Binary Search Tree rules of insertion
 	public SignalBST add(Node node)
 	{
-		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength(), false);
+		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength());
 		
-		if (AvaliableNode == null)
+		if (AvaliableNode == null) //need new node bc new strength
 		{
 			Nodes.add(node);
 			GetRoot().Add(node);
 		}
-		else
+		else //found node with equal strength
 		{
-			AvaliableNode.Add(node.Signals);
+			AvaliableNode.Add(node.GetSignals());
 		}
 		
 		return this;
@@ -33,7 +33,7 @@ public class SignalBST
 	//removes a node from the SignalBST according to the Binary Search Tree rules of deletion
 	public SignalBST remove(Node node)
 	{
-		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength(), false);
+		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength());
 		
 		if (AvaliableNode == null) //not found in all Nodes
 		{
@@ -64,7 +64,8 @@ public class SignalBST
 	//returns the maximum signal strength for the given signal pattern
 	public int getMaxSignalStrength(String signalPattern)
 	{
-		return FindNodeByStrength(GetRoot(), 15, true).GetStrength();
+		return 0;
+		//return FindNodeByStrength(GetRoot(), 15, true).GetStrength();
 		//gets the node that has the strength closest to 15 (max) and returns its actual strength
 	}
 	
@@ -85,7 +86,7 @@ public class SignalBST
 		return Nodes.get(0);
 	}
 	
-	private Node FindNodeByStrength(Node At, int Strength, boolean ReturnClosest) 
+	private Node FindNodeByStrength(Node At, int Strength) 
 	{
 		
 		if (At == null) //if not in nodes
@@ -99,10 +100,10 @@ public class SignalBST
 			return At;
 		
 		if (Strength < Target) //go left
-			return FindNodeByStrength(At.GetLeftChild(), Strength, ReturnClosest);
+			return FindNodeByStrength(At.GetLeftChild(), Strength);
 		
 		if (Strength > Target) //go right
-			return FindNodeByStrength(At.GetRightChild(), Strength, ReturnClosest);
+			return FindNodeByStrength(At.GetRightChild(), Strength);
 		
 		return null; 
 		//code doesn't reach here but java goes error despite ==, <, and > all being covered above so frick java
@@ -188,7 +189,85 @@ public class SignalBST
 
 	public static void main(String[] args) {
 		
-		ReadFile F = new ReadFile("Signals.txt");
+		/* Test cases - Ctrl/Command + '/' key to uncomment */
+		
+		/*Test case 1 - simple print tree*/
+		
+//		Signal FirstSignal = new Signal("Cow", 1); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree = new SignalBST(First);
+//		
+//		Tree.add(Second);
+//		Tree.add(Third);
+//		Tree.add(Forth);
+		
+// 		Tree.PrettyPrint();
+		
+		/*Test case 2 - Test find node function*/
+		
+//		Signal FirstSignal = new Signal("Cow", 2); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Calf", 3); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("A", 4); //should increment signal count
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree = new SignalBST(First);
+//		
+//		Tree.add(Second);
+//		Tree.add(Third);
+//		Tree.add(Forth);
+//		
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); // Cow
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); // Bull
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 3)); // Calf
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 4)); // A
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 9)); // null - 9 is not in nodes
+		
+		/* Test case 3 - Test find node function with more than one message in the same node and test total duplicates (increments)*/
+		
+//		Signal FirstSignal = new Signal("Cow", 2); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Calf", 1); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Bull", 1); //should increment signal count
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree = new SignalBST(First);
+//		
+//		Tree.add(Second);
+//		Tree.add(Third);
+//		Tree.add(Forth);
+//		
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); // Cow
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); // Bull
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 3)); // null
+		
+		
+		
+		/*Test case 10 - file IO - replace "Signals.txt" with your full path to the file*/
+		
+		ReadFile F = new ReadFile("Signals.txt"); //
 		
 		ArrayList<Node> Nodes = F.getNodes();
 		
@@ -196,14 +275,14 @@ public class SignalBST
 		
 		Nodes.remove(0);
 		
+		Nodes.subList(0, 10);
+		
+		//Tree.add(Nodes.get(0));
+		
 		for (Node N : Nodes)
 		{
 			Tree.add(N);
 		}
-		
-		//System.out.println(Tree.GetNodes());
-		
-		//System.out.println(Tree.GetDepth(Tree.GetRoot(), 0));
 		
 		Tree.PrettyPrint();
 		

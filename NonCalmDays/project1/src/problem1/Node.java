@@ -16,9 +16,20 @@ public class Node
 	
 	public void Add(Signal S)
 	{
-		if (Signals.contains(S)) //if already exists with the same message just increment count
+		boolean Contains = false;
+		
+		for (Signal SN : Signals)
 		{
-			S.IncrementCount();
+			if (SN.GetMessage().equals(S.GetMessage()))
+			{
+				Contains = true;
+				SN.IncrementCount();
+				break;
+			}
+		}
+		
+		if (Contains) //if already exists with the same message just increment count
+		{
 			return;
 		}
 		
@@ -47,6 +58,14 @@ public class Node
 		}
 	}
 	
+	public void Add(ArrayList<Signal> SM) //adds with list to be more convient
+	{
+		for (Signal S : SM)
+			Add(S); //calls the add function in this class so don't need to rewrite logic
+	}
+	
+	//Remove
+	
 	public void Remove(Signal S)
 	{
 		if (Signals.contains(S)) //if already exists with the same message just decrement count
@@ -56,12 +75,6 @@ public class Node
 		}
 		
 		Signals.remove(S);
-	}
-	
-	public void Add(ArrayList<Signal> SM) //adds with list to be more convient
-	{
-		for (Signal S : SM)
-			Add(S); //calls the add function in this class so don't need to rewrite logic
 	}
 	
 	public Node GetLeftChild()
@@ -101,7 +114,7 @@ public class Node
 	
 	public String toString()
 	{
-		String Return = "";
+		String Return = "Strength: " + GetStrength();
 		for (Signal S : Signals)
 		{
 			Return += S.toString() + " ";
