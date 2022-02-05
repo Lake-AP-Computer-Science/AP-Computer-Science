@@ -1,7 +1,6 @@
 package problem1;
 
 import java.util.ArrayList;
-import java.lang.Math;
 
 public class SignalBST 
 {
@@ -152,11 +151,6 @@ public class SignalBST
 		
 	}
 	
-	private int GetExpectedAtGeneration(int Generation)
-	{
-		return (int) Math.pow(2, Generation);
-	}
-	
 	private void getBFS(Node At, ArrayList<ArrayList<Node>> Queue, int Generation)
 	{
 		if (Generation == GetDepth(GetRoot(), 0) || At == null)
@@ -180,36 +174,6 @@ public class SignalBST
 		}
 		
 		getBFS(GetRoot(), C, 0);
-		
-		/*System.out.println(C);
-		
-		int GenerationCounter = 1;
-		
-		for (int i = 0; i < C.size(); i++)
-		{
-			if (i != 0)
-			{
-				if (i % 2 == 0)
-					System.out.print(" ⟂ ");
-				else
-					System.out.print("   ");
-			}
-			
-			if (i == GetExpectedAtGeneration(GenerationCounter) - 1)
-			{
-				++GenerationCounter;
-				System.out.println();
-			}
-			
-			if (C.get(i) == null)
-			{
-				System.out.print(" ");
-				continue;
-			}
-			
-			//System.out.print(C.get(i).toString());
-			System.out.print(C.get(i).GetStrength() + " ");
-		}*/
 		
 		for (ArrayList<Node> List : C)
 		{
