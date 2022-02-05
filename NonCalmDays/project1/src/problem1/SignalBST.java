@@ -1,6 +1,7 @@
 package problem1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SignalBST 
 {
@@ -56,7 +57,7 @@ public class SignalBST
 	{
 		ArrayList<Integer> Strengths = new ArrayList<Integer>();
 		
-		for (Node S : FindNodesByMessage(GetRoot(), signalPattern))
+		for (Node S : FindNodesByMessage(signalPattern))
 		{
 			Strengths.add(S.GetStrength());
 		}
@@ -67,9 +68,8 @@ public class SignalBST
 	//returns the maximum signal strength for the given signal pattern
 	public int getMaxSignalStrength(String signalPattern)
 	{
-		return 0;
-		//return FindNodeByStrength(GetRoot(), 15, true).GetStrength();
-		//gets the node that has the strength closest to 15 (max) and returns its actual strength
+		ArrayList<Node> N = FindNodesByMessage(signalPattern);
+		return N.get(N.size() - 1).GetStrength();
 	}
 	
 	//combines and return the SignalBST that is  a combination of A and B
@@ -112,31 +112,23 @@ public class SignalBST
 		//code doesn't reach here but java goes error despite ==, <, and > all being covered above so frick java
 	}
 	
-	private ArrayList<Node> FindNodesByMessage(Node At, String Message)
+	private ArrayList<Node> FindNodesByMessage(String Message)
 	{
 		ArrayList<Node> MessageNodes = new ArrayList<Node>();
 		
-		for (Node N : FindNodesByMessage(At.GetLeftChild(), Message)) 
+		for (int i = 1; i <= 15; ++i)
 		{
+			Node N = FindNodeByStrength(GetRoot(), i);
+			
 			if (N == null)
 				continue;
 			
 			for (Signal S : N.GetSignals())
 			{
 				if (S.GetMessage() == Message)
+				{
 					MessageNodes.add(N);
-			}
-		}
-		
-		for (Node N : FindNodesByMessage(At.GetRightChild(), Message)) 
-		{
-			if (N == null)
-				continue;
-			
-			for (Signal S : N.GetSignals())
-			{
-				if (S.GetMessage() == Message)
-					MessageNodes.add(N);
+				}
 			}
 		}
 		
@@ -192,9 +184,16 @@ public class SignalBST
 
 	public static void main(String[] args) {
 		
-		/* Test cases - Ctrl/Command + '/' key to uncomment */
+/* 
+ * Test cases - Select in bulk the commented ones and press Ctrl/Command + '/' key to uncomment 
+ * 
+ * 1. Modify your code so that it matches mine in casing.
+ * 2. Your code should be able to reproduce somewhat similar to the "expected output", if you think there's something wrong with the expected output, please contact me ASAP.
+ * 3. If you would like to reproduce the exact same expected output, use my toString() methods for the Node and Signal classes.
+ * 
+ * */
 		
-		/*Test case 1 - simple print tree*/
+/*Test case 1 - simple print tree*/
 		
 //		Signal FirstSignal = new Signal("Cow", 1); // root
 //		Node First = new Node(FirstSignal);
@@ -214,16 +213,16 @@ public class SignalBST
 //		Tree.add(Third);
 //		Tree.add(Forth);
 //
-//		Tree.PrettyPrint();
+//		Tree.PrettyPrint(); //steal this from my GitHub
 		
-		/*
-		 * Expected output (*s are just for comments continuation):
-		 * 
-		 * Strength: 1 Signals: [ "Cow" x1, ]
-		 * Strength: 4 Signals: [ "Bull" x2,  "Calf" x1, ]
-		 * */
-		
-		/*Test case 2 - Test find node function*/
+/*
+ * Expected output (*s are just for comments continuation):
+ * 
+ * Strength: 1 Signals: [ "Cow" x1, ]
+ * Strength: 4 Signals: [ "Bull" x2,  "Calf" x1, ]
+ * */
+
+/*Test case 2 - Test find node function*/
 		
 //		Signal FirstSignal = new Signal("Cow", 2); // root
 //		Node First = new Node(FirstSignal);
@@ -249,17 +248,17 @@ public class SignalBST
 //		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 4)); // A
 //		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 9)); // null - 9 is not in nodes
 		
-		/*
-		 * Expected output (*s are just for comments continuation):
-		 * 
-		 * Strength: 2  Signals: [ "Cow" x1, ]
-		 * Strength: 1  Signals: [ "Bull" x1, ]
-		 * Strength: 3  Signals: [ "Calf" x1, ]
-		 * Strength: 4  Signals: [ "A" x1, ]
-		 * null
-		 * */
-		
-		/* Test case 3 - Test find node function with more than one message in the same node and test total duplicates (increments)*/
+/*
+ * Expected output (*s are just for comments continuation):
+ * 
+ * Strength: 2  Signals: [ "Cow" x1, ]
+ * Strength: 1  Signals: [ "Bull" x1, ]
+ * Strength: 3  Signals: [ "Calf" x1, ]
+ * Strength: 4  Signals: [ "A" x1, ]
+ * null
+ * */
+
+/* Test case 3 - Test find node function with more than one message in the same node and test total duplicates (increments)*/
 		
 //		Signal FirstSignal = new Signal("Cow", 2); // root
 //		Node First = new Node(FirstSignal);
@@ -282,23 +281,65 @@ public class SignalBST
 //		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); // Cow
 //		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); // Bull
 //		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 3)); // null
+		
+/*Expected output (*s are just for comments continuation):
+ * 
+ * Strength: 2  Signals: [ "Cow" x1, ]
+ * Strength: 1  Signals: [ "Bull" x2,  "Calf" x1, ]
+ * null
+ * */
+
+/* Test case 4 - Removing from tree*/
+		
+//		Signal FirstSignal = new Signal("Cow", 2); // root
+//		Node First = new Node(FirstSignal);
 //		
-		/*Expected output (*s are just for comments continuation):
-		 * 
-		 * Strength: 2  Signals: [ "Cow" x1, ]
-		 * Strength: 1  Signals: [ "Bull" x2,  "Calf" x1, ]
-		 * null
-		 * */
+//		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Birdy", 1); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Bull", 1); //should increment signal count
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree = new SignalBST(First);
+//		
+//		Tree.add(Second);
+//		Tree.add(Third);
+//		Tree.add(Forth);
+//		
+//		System.out.println("Before:");
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); //root
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); //Bull at 2 and Birdy
+//		
+//		Tree.remove(Third); //bye bye birdy
+//		Tree.remove(Forth); //decrement bull back to 1 since Second still exists
+//		Tree.remove(First); //removes root, shouldn't break tree. Root will have node with a strength but no signals
+//		
+//		System.out.println("After:");
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); //root
+//		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); //Bull at 1 and Birdy gone
+
+/* Expected output (*s are just for comments continuation):
+ * 
+ * Before:
+ * Strength: 2  Signals: [ "Cow" x1, ]
+ * Strength: 1  Signals: [ "Bull" x2,  "Birdy" x1, ]
+ * After:
+ * Strength: 2  Signals: []
+ * Strength: 1  Signals: [ "Bull" x1, ]
+ * */
 		
-		/* Test case 4 - Removing from tree*/
-		
+/* Test case 6 - get signal strength && find nodes by message */
+	
 		Signal FirstSignal = new Signal("Cow", 2); // root
 		Node First = new Node(FirstSignal);
 		
 		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
 		Node Second = new Node(SecondSignal);
 		
-		Signal ThirdSignal = new Signal("Birdy", 1); //should increment signal count
+		Signal ThirdSignal = new Signal("Bull", 5); //should increment signal count
 		Node Third = new Node(ThirdSignal);
 		
 		Signal ForthSignal = new Signal("Bull", 1); //should increment signal count
@@ -310,31 +351,27 @@ public class SignalBST
 		Tree.add(Third);
 		Tree.add(Forth);
 		
-		System.out.println("Before:");
-		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); //root
-		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); //Bull at 2 and Birdy
+		System.out.println(Tree.FindNodesByMessage("Bull")); // 1 find it twice and 5 find it once
+		System.out.println(Tree.FindNodesByMessage("Cow")); // 2 find it once
 		
-		Tree.remove(Third); //bye bye birdy
-		Tree.remove(Forth); //decrement bull back to 1 since Second still exists
-		Tree.remove(First); //removes root, shouldn't break tree. Root will have node with a strength but no signals
+		System.out.println(Tree.getSignalStrengths("Bull")); // [1, 5]
+		System.out.println(Tree.getSignalStrengths("Cow")); // [1]
 		
-		System.out.println("After:");
-		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 2)); //root
-		System.out.println(Tree.FindNodeByStrength(Tree.GetRoot(), 1)); //Bull at 1 and Birdy gone
+		System.out.println(Tree.getMaxSignalStrength("Bull")); // 5
+		System.out.println(Tree.getMaxSignalStrength("Cow")); // 2
 
-		/*Expected output (*s are just for comments continuation):
-		 * 
-		 * Before:
-		 * Strength: 2  Signals: [ "Cow" x1, ]
-		 * Strength: 1  Signals: [ "Bull" x2,  "Birdy" x1, ]
-		 * After:
-		 * Strength: 2  Signals: []
-		 * Strength: 1  Signals: [ "Bull" x1, ]
-		 * */
+/* Expected output (*s are just for comments continuation):
+ * 
+ * [		 Strength: 1  Signals: [ "Bull" x2, ], 		 Strength: 5  Signals: [ "Bull" x1, ]]
+ * [		 Strength: 2  Signals: [ "Cow" x1, ]]
+ * [1, 5]
+ * [2]
+ * */
 		
-		/* Final BOSS - Lake's test case -  */
-		
-		/*Test case - create tree from file IO - replace "Signals.txt" with your full path to the file*/
+/* The following test cases use Lake's 10-page-on-google-docs test case
+ * which I have composed into characters to signify different patterns,
+ * get it from: https://github.com/Lake-AP-Computer-Science/AP-Computer-Science/blob/main/NonCalmDays/project1/Signals.txt
+ */
 		
 //		ReadFile F = new ReadFile("Signals.txt"); //
 //		
@@ -365,6 +402,8 @@ public class SignalBST
 		 * Strength: 13  Signals: [ "C" x7,  "G" x13, ]
 		 * Strength: 14  Signals: [ "B" x7,  "H" x5,  "J" x8, ]
 		 */
+		
+		
 		
 	}
 	

@@ -77,15 +77,12 @@ public class Node
 	}
 	
 	//Remove
-	
 	public void Remove(Signal S)
 	{
-		boolean Contains = false;
 		for (Signal SN : Signals)
 		{
 			if (SN.GetMessage().equals(S.GetMessage()))
 			{
-				Contains = true;
 				SN.DecrementCount();
 				break;
 			}
