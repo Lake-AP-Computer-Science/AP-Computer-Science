@@ -73,9 +73,12 @@ public class SignalBST
 	}
 	
 	//combines and return the SignalBST that is  a combination of A and B
-	public SignalBST combine(SignalBST A, SignalBST B)
+	public void combine(SignalBST Other)
 	{
-		return null;
+		for (Node N : Other.GetNodes())
+		{
+			add(N);
+		}
 	}
 	
 	public ArrayList<Node> GetNodes()
@@ -135,13 +138,17 @@ public class SignalBST
 		return MessageNodes;
 	}
 	
-	private int GetDepth(Node n, int Generations)
+	@SuppressWarnings("unchecked")
+	private int GetDepth(Node n, int Generations, ArrayList<Integer> DoneBefore)
 	{
 		if (n == null)
 			return Generations;
 		
-		int L = GetDepth(n.GetLeftChild(), Generations + 1);
-		int R = GetDepth(n.GetRightChild(), Generations + 1);
+		if (!DoneBefore.contains(n.GetStrength()))
+			DoneBefore.add(n.GetStrength());
+		
+		int L = GetDepth(n.GetLeftChild(), Generations + 1, (ArrayList<Integer>)DoneBefore.clone());
+		int R = GetDepth(n.GetRightChild(), Generations + 1, (ArrayList<Integer>)DoneBefore.clone());
 		
 		return L > R ? L : R;
 		
@@ -149,7 +156,7 @@ public class SignalBST
 	
 	private void getBFS(Node At, ArrayList<ArrayList<Node>> Queue, int Generation)
 	{
-		if (Generation == GetDepth(GetRoot(), 0) || At == null)
+		if (Generation == GetDepth(GetRoot(), 0, new ArrayList<Integer>()) || At == null)
 			return;
 		
 		Queue.get(Generation).add(At);
@@ -164,7 +171,7 @@ public class SignalBST
 		
 		ArrayList<ArrayList<Node>> C = new ArrayList<ArrayList<Node>>();
 		
-		for (int i = 0; i < GetDepth(GetRoot(), 0); ++i)
+		for (int i = 0; i < GetDepth(GetRoot(), 0, new ArrayList<Integer>()); ++i)
 		{
 			C.add(new ArrayList<Node>());
 		}
@@ -179,6 +186,7 @@ public class SignalBST
 			}
 			System.out.println();
 		}
+		
 		
 	}
 
@@ -333,32 +341,32 @@ public class SignalBST
 		
 /* Test case 6 - get signal strength && find nodes by message */
 	
-		Signal FirstSignal = new Signal("Cow", 2); // root
-		Node First = new Node(FirstSignal);
-		
-		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
-		Node Second = new Node(SecondSignal);
-		
-		Signal ThirdSignal = new Signal("Bull", 5); //should increment signal count
-		Node Third = new Node(ThirdSignal);
-		
-		Signal ForthSignal = new Signal("Bull", 1); //should increment signal count
-		Node Forth = new Node(ForthSignal);
-		
-		SignalBST Tree = new SignalBST(First);
-		
-		Tree.add(Second);
-		Tree.add(Third);
-		Tree.add(Forth);
-		
-		System.out.println(Tree.FindNodesByMessage("Bull")); // 1 find it twice and 5 find it once
-		System.out.println(Tree.FindNodesByMessage("Cow")); // 2 find it once
-		
-		System.out.println(Tree.getSignalStrengths("Bull")); // [1, 5]
-		System.out.println(Tree.getSignalStrengths("Cow")); // [1]
-		
-		System.out.println(Tree.getMaxSignalStrength("Bull")); // 5
-		System.out.println(Tree.getMaxSignalStrength("Cow")); // 2
+//		Signal FirstSignal = new Signal("Cow", 2); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 1); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Bull", 5); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Bull", 1); //should increment signal count
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree = new SignalBST(First);
+//		
+//		Tree.add(Second);
+//		Tree.add(Third);
+//		Tree.add(Forth);
+//		
+//		System.out.println(Tree.FindNodesByMessage("Bull")); // 1 find it twice and 5 find it once
+//		System.out.println(Tree.FindNodesByMessage("Cow")); // 2 find it once
+//		
+//		System.out.println(Tree.getSignalStrengths("Bull")); // [1, 5]
+//		System.out.println(Tree.getSignalStrengths("Cow")); // [1]
+//		
+//		System.out.println(Tree.getMaxSignalStrength("Bull")); // 5
+//		System.out.println(Tree.getMaxSignalStrength("Cow")); // 2
 
 /* Expected output (*s are just for comments continuation):
  * 
@@ -367,6 +375,58 @@ public class SignalBST
  * [1, 5]
  * [2]
  * */
+		
+/* Test case 7 - Combine Signal BST */
+
+		//tree
+		Signal FirstSignal = new Signal("Cow", 1); // root
+		Node First = new Node(FirstSignal);
+		
+		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+		Node Second = new Node(SecondSignal);
+		
+		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+		Node Third = new Node(ThirdSignal);
+		
+		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+		Node Forth = new Node(ForthSignal);
+		
+		SignalBST Tree1 = new SignalBST(First);
+		
+		Tree1.add(Second);
+		Tree1.add(Third);
+		Tree1.add(Forth);
+		
+		//next tree
+		FirstSignal = new Signal("Combine into 1", 1); //root
+		First = new Node(FirstSignal);
+		
+		SecondSignal = new Signal("New Node At 3", 3); //makes a new node at 3 with the new message
+		Second = new Node(SecondSignal);
+		
+		ThirdSignal = new Signal("Bull", 4); //should increment bull from tree 1
+		Third = new Node(ThirdSignal);
+		
+		ForthSignal = new Signal("Unique", 9); //add another message into fourth node
+		Forth = new Node(ForthSignal);
+		
+		SignalBST Tree2 = new SignalBST(First);
+		
+		Tree2.add(Second);
+		Tree2.add(Third);
+		Tree2.add(Forth);
+		
+		System.out.println("        Before:");
+		System.out.println("First:");
+		Tree1.PrettyPrint();
+		System.out.println("Second:");
+		Tree2.PrettyPrint();
+		
+		Tree1.combine(Tree2);
+		
+		System.out.println("After:");
+		Tree1.PrettyPrint();
+		
 		
 /* The following test cases use Lake's 10-page-on-google-docs test case
  * which I have composed into characters to signify different patterns,
@@ -402,8 +462,6 @@ public class SignalBST
 		 * Strength: 13  Signals: [ "C" x7,  "G" x13, ]
 		 * Strength: 14  Signals: [ "B" x7,  "H" x5,  "J" x8, ]
 		 */
-		
-		
 		
 	}
 	
