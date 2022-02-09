@@ -13,3 +13,7 @@ File a pull request
 ## Extra Help?
 
 DM me on discord `puɐlʍoƆ#4563`
+
+## Alternate IDE?
+You can get IntelliJ Idea Community Edition @ https://www.jetbrains.com/idea/download/. 
+Once you're there, click on the Download button below the big, large, text that says "Community"
