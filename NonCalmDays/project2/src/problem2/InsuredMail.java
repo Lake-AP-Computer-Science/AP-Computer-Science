@@ -21,11 +21,13 @@ public class InsuredMail extends Mail{
 	public int compareTo(Object o) {
 		return Package.compareTo(o);
 	}
-	
-	public String toString()
-	{
-		return Package.toString() + " Insured of: " + Value;
-	}
+	  @Override
+ 	  public String toString() {
+    		return "InsuredMail {" +
+            		"mailPackage=" + mailPackage +
+            		", value=" + value +
+            		'}';
+  	}
 	
 	public Mail getPackage() {
 		return Package;
