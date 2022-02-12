@@ -1,0 +1,4 @@
+PriorityMail, 1.0, 2, 200
+FlatRateEnv, 3.2, 5, 0
+FlatRateBox, 5.7, 8, 540
+MediaMail, 1.3, 4, 350

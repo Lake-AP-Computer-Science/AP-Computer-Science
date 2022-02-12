@@ -11,6 +11,7 @@ public abstract class Mail extends Object implements Comparable<Object>
 	{
 		DecimalFormat dollars = new DecimalFormat("$0.00");
 		return dollars.format(calculatePostage());
+		//return "Calculated: " + dollars.format(calculatePostage()) + " Weight: " + weight + " At zone: " + zone;
 	}
  
 	@Override
@@ -18,39 +19,25 @@ public abstract class Mail extends Object implements Comparable<Object>
 	{
 		PriorityMail o = null;
 		
-		System.out.println(other.getClass());
-		
-		if (other instanceof PriorityMail || other.getClass() == PriorityMail.class)
-		{
-			o = (PriorityMail)other;
-		}
+		if (this.getClass() == MediaMail.class)
+			o = ((MediaMail)this).getPM();
+		else if (this.getClass() == InsuredMail.class)
+			o = (PriorityMail)((InsuredMail)this).getIMail();
 		else
-		{
-			if (this.getClass() == MediaMail.class)
-				o = ((MediaMail)other).getPM();
-			else if (this.getClass() == InsuredMail.class)
-				o = (PriorityMail)(((InsuredMail)other).getIMail());
-		}
+			o = (PriorityMail)this;
 		
 		PriorityMail s = null;
 		
-		if (this instanceof PriorityMail || this.getClass() == PriorityMail.class)
-		{
-			s = (PriorityMail)this;
-		}
+		if (this.getClass() == MediaMail.class)
+			s = ((MediaMail)this).getPM();
+		else if (this.getClass() == InsuredMail.class)
+			s = (PriorityMail)((InsuredMail)this).getIMail();
 		else
-		{
-			if (this.getClass() == MediaMail.class)
-				s = ((MediaMail)this).getPM();
-			else if (this.getClass() == InsuredMail.class)
-				s = (PriorityMail)(((InsuredMail)this).getIMail());
-		}
+			s = (PriorityMail)this;
 		
-		System.out.println("S: " + s.getClass() + " O: " + o.getClass());
-		
-		if (o.calculatePostage() > s.calculatePostage())
+		if (o.calculatePostage() > calculatePostage())
 			return 1;
-		else if (o.calculatePostage() < s.calculatePostage())
+		else if (o.calculatePostage() < calculatePostage())
 			return -1;
 		
 		if (o.getWeight() == s.getWeight())
@@ -148,11 +135,9 @@ public abstract class Mail extends Object implements Comparable<Object>
 				InsuredMail IM = new InsuredMail(PM, 350);
 				FlatRateEnv EM = new FlatRateEnv(2.0, 1);
 				FlatRateBox BM = new FlatRateBox(1.5, 2);
-				PriorityMail PM2 = new PriorityMail(10.0, 5);
 				
 				ArrayList<Mail> All = new ArrayList<Mail>();
 				
-				All.add(PM2);
 				All.add(PM);
 				All.add(IM);
 				All.add(EM);
@@ -163,25 +148,41 @@ public abstract class Mail extends Object implements Comparable<Object>
 				MailSorter.SortMail(All, true); //sort ascending in package cost first and weight
 				
 				System.out.println("Sorted Ascending: " + All); //sorted
+				
+				MailSorter.SortMail(All, false); //sort descending in package cost first and weight
+				
+				System.out.println("Sorted Descending: " + All); //sorted
 
 	/*
-	 * Expected Output 
-	 * Unsorted: [$4.05 zone: 1 weight: 1.0, $4.05 zone: 1 weight: 1.0 Insured of: 350, $4.05 zone: 1 weight: 2.0, $8.10 zone: 2 weight: 1.5]
-	 * Sorted Ascending: [$4.05 zone: 1 weight: 1.0, $4.05 zone: 1 weight: 1.0 Insured of: 350, $4.05 zone: 1 weight: 2.0, $8.10 zone: 2 weight: 1.5]
+	 * Expected Output (with debug output - uncomment line 21 and comment line 18):
+	 * Unsorted: [Calculated: $4.05 Weight: 1.0 At zone: 1, Calculated: $4.05 Weight: 1.0 At zone: 1 Insured of: 350, Calculated: $4.05 Weight: 2.0 At zone: 1, Calculated: $8.10 Weight: 1.5 At zone: 2]
+	 * Sorted Ascending: [Calculated: $8.10 Weight: 1.5 At zone: 2, Calculated: $4.05 Weight: 1.0 At zone: 1, Calculated: $4.05 Weight: 1.0 At zone: 1 Insured of: 350, Calculated: $4.05 Weight: 2.0 At zone: 1]
+	 * Sorted Descending: [Calculated: $4.05 Weight: 1.0 At zone: 1, Calculated: $4.05 Weight: 2.0 At zone: 1, Calculated: $4.05 Weight: 1.0 At zone: 1 Insured of: 350, Calculated: $8.10 Weight: 1.5 At zone: 2]
+	 * */
+
+	/*
+	 * Expected Output (without debug output):
+	 * Unsorted: [$4.05, $6.05, $4.05, $8.10]
+	 * Sorted Ascending: [$8.10, $4.05, $6.05, $4.05]
+	 * Sorted Descending: [$4.05, $4.05, $6.05, $8.10]
 	 * */
 			
 	// Last case - final-boss-lake-case with reading from file
 			
-//			ReadFile R = new ReadFile("C:/Users/balle/eclipse-workspace/APProblems/src/problem2/Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
-//			
-//			ArrayList<Mail> Mails = R.getMails();
-//			
-//			MailSorter.SortMail(Mails, false);
-//			
-//			System.out.println("Sorted Lake Mail: " + Mails);
+			ReadFile R = new ReadFile("C:/Users/balle/eclipse-workspace/APProblems/src/problem2/Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
+			
+			ArrayList<Mail> Mails = R.getMails();
+			
+			MailSorter.SortMail(Mails, false);
+			
+			System.out.println("Sorted Lake Mail: " + Mails);
+			
+	/* Expected Output (with debug output - uncomment line 21 and comment line 18):
+	 * Sorted Lake Mail: [Calculated: $4.05 Weight: 3.2 At zone: 5 Insured of: 0, Calculated: $4.05 Weight: 5.7 At zone: 8 Insured of: 540, Calculated: $8.10 Weight: 1.0 At zone: 2 Insured of: 200, Calculated: $22.99 Weight: 1.3 At zone: 4 Insured of: 350]
+	 */
 
 	/* Expected Output (without debug output):
-	 * Sorted Lake Mail: [$4.05 zone: 2 weight: 1.0 Insured of: 200, $4.05 zone: 5 weight: 3.2 Insured of: 0, $4.05 zone: 8 weight: 5.7 Insured of: 540, $30.78 Insured of: 350]
+	 * Sorted Lake Mail: [$4.05, $7.05, $9.10, $24.99]
 	 */
 			
 		}

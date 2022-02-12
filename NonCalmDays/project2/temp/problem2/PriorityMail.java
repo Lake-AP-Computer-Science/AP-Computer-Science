@@ -1,7 +1,5 @@
 package problem2;
 
-import java.text.DecimalFormat;
-
 public class PriorityMail extends Mail
 {
 	private double weight;
@@ -48,10 +46,4 @@ public class PriorityMail extends Mail
 		else
 			return flat_price;
 	}
-	
-//	public String toString()
-//	{
-//		DecimalFormat dollars = new DecimalFormat("$0.00");
-//		return "Cost: " + dollars.format(calculatePostage()) + " Weight: " + weight + " At Zone: " + zone;
-//	}
 }

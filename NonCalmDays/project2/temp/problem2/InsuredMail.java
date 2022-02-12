@@ -48,6 +48,6 @@ public class InsuredMail extends Mail
 	
 	public String toString()
 	{
-		return super.toString() + " Insured of: " + value;
+		return iMail.toString() + " Insured of: " + value;
 	}
 }

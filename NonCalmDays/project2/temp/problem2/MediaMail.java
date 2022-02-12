@@ -1,14 +1,13 @@
 package problem2;
 
-public class MediaMail extends Mail {
-
+public class MediaMail extends Mail
+{
 	private final double DISCOUNT = 0.25;
-	
 	PriorityMail PM;
 	
-	public MediaMail(double Weight, int Zone)
+	public MediaMail(double weight, int zone)
 	{
-		this.PM = new PriorityMail(Weight, Zone);
+		this.PM = new PriorityMail(weight, zone);
 	}
 	
 	public PriorityMail getPM() {
@@ -30,5 +29,4 @@ public class MediaMail extends Mail {
 		FlatRateBox FRB = new FlatRateBox(this.PM.getWeight(), this.PM.getZone());
 		return PM.calculatePostage() + this.PM.getWeight() * this.PM.getZone() * FRB.calculatePostage() * DISCOUNT;
 	}
-
 }
