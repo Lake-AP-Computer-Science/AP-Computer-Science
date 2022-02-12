@@ -66,7 +66,8 @@ public class ReadFile
 						break;
 				}
 				
-				mailType = new InsuredMail(mailType, insurance);
+				if (insurance > 0)
+					mailType = new InsuredMail(mailType, insurance);
 				
 				mails.add(mailType);
 			}

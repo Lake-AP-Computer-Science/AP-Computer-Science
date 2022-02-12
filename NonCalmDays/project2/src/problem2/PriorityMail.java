@@ -1,7 +1,5 @@
 package problem2;
 
-import java.text.DecimalFormat;
-
 public class PriorityMail extends Mail
 {
 	private double weight;
@@ -42,11 +40,8 @@ public class PriorityMail extends Mail
 	public double calculatePostage()
 	{
 		if(weight > 1)
-		{
 			return flat_price + flat_price * zone;
-		}
-		else
-			return flat_price;
+		return flat_price;
 	}
 	
 //	public String toString()

@@ -40,14 +40,15 @@ public class InsuredMail extends Mail
 		return iMail.calculatePostage() + (Math.ceil((double)value / 100) * 0.5);
 	}
 	
-	@Override
-	public int compareTo(Object other)
-	{
-		return iMail.compareTo(other);
-	}
+//	@Override
+//	public int compareTo(Object other)
+//	{
+//		return iMail.compareTo(other);
+//	}
 	
 	public String toString()
 	{
 		return super.toString() + " Insured of: " + value;
+		//return iMail.toString() + " Insured of: " + value;
 	}
 }

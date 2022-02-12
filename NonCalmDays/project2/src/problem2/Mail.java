@@ -27,7 +27,7 @@ public abstract class Mail extends Object implements Comparable<Object>
 				return ((MediaMail)Other).getPM();
 		
 		if (Other instanceof InsuredMail)
-				return (PriorityMail)(((InsuredMail)Other).getIMail());
+				return GetPriorityMail(((InsuredMail)Other).getIMail());
 		
 		//System.out.println("failed " + Other.getClass());
 		
@@ -42,16 +42,19 @@ public abstract class Mail extends Object implements Comparable<Object>
 		
 		PriorityMail Self = GetPriorityMail(this);
 		
-		//System.out.println("S: " + Self.getClass() + " O: " + Other.getClass());
-		
-		if (Other.calculatePostage() > Self.calculatePostage())
+		if (((Mail)(other)).calculatePostage() > this.calculatePostage())
 			return 1;
-		else if (Other.calculatePostage() < Self.calculatePostage())
+		
+		if (((Mail)(other)).calculatePostage() < this.calculatePostage())
 			return -1;
+		
+		//if costs are equal
+		System.out.println("S: " + this.calculatePostage() + " O: " + ((Mail)(other)).calculatePostage());
 		
 		if (Other.getWeight() == Self.getWeight())
 			return 0;
-		else if (Other.getWeight() > Self.getWeight())
+		
+		if (Other.getWeight() > Self.getWeight())
 			return 1;
 		
 		return -1;
