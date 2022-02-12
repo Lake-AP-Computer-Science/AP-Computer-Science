@@ -110,7 +110,7 @@ public class Main
 				
 		// Last case - final-boss-lake-case with reading from file
 				
-//				ReadFile R = new ReadFile("C:\\\\Users\\\\balle\\\\Downloads\\\\Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
+//				ReadFile R = new ReadFile("Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
 //				
 //				ArrayList<Mail> Mails = R.getMails();
 //				
