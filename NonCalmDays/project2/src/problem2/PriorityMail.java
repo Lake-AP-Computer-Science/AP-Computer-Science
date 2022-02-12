@@ -2,51 +2,39 @@ package problem2;
 
 public class PriorityMail extends Mail
 {
-	private double weight;
-	private int zone;
-	private double flat_price = 4.05;
+	private double Weight;
+	private int Zone;
+	static public final double FLAT_PRICE = 4.05;
+
+	//precondition: 1 <= Zone <= 8
+	public PriorityMail(double Weight, int Zone) 
+	{
+		this.Weight = Weight;
+		this.Zone = Zone;
+	}
 	
+	public double calculatePostage() //thank you Mike for figuring this out. Apparently the formula only applies if Weight is > 1
+	{
+		if(Weight > 1)
+			return FLAT_PRICE + FLAT_PRICE * Zone;
+		return FLAT_PRICE;
+	}
+	
+	//auto generated getters and setters
 	public double getWeight() {
-		return weight;
+		return Weight;
 	}
 
-	public void setWeight(double weight) {
-		this.weight = weight;
+	public void setWeight(double Weight) {
+		this.Weight = Weight;
 	}
 
 	public int getZone() {
-		return zone;
+		return Zone;
 	}
 
-	public void setZone(int zone) {
-		this.zone = zone;
+	public void setZone(int Zone) {
+		this.Zone = Zone;
 	}
 
-	public double getFlat_price() {
-		return flat_price;
-	}
-
-	public void setFlat_price(double flat_price) {
-		this.flat_price = flat_price;
-	}
-
-	//precondition: 1 <= zone <= 8
-	public PriorityMail(double weight, int zone) 
-	{
-		this.weight = weight;
-		this.zone = zone;
-	}
-	
-	public double calculatePostage()
-	{
-		if(weight > 1)
-			return flat_price + flat_price * zone;
-		return flat_price;
-	}
-	
-//	public String toString()
-//	{
-//		DecimalFormat dollars = new DecimalFormat("$0.00");
-//		return "Cost: " + dollars.format(calculatePostage()) + " Weight: " + weight + " At Zone: " + zone;
-//	}
 }

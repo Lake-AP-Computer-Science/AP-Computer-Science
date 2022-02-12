@@ -3,52 +3,46 @@ package problem2;
 public class InsuredMail extends Mail
 {
 	//variables
-	private Mail iMail;
-	private int value;
+	private Mail NestedMail;
+	private int Value;
 	
 	//constructor
-	public InsuredMail(Mail iMail, int value)
+	public InsuredMail(Mail NestedMail, int Value)
 	{
-		this.iMail = iMail;
-		this.value = value;
+		this.NestedMail = NestedMail;
+		this.Value = Value;
 	}
 	
-	//getters and setters
-	public Mail getIMail()
+	@Override
+	public double calculatePostage()
 	{
-		return this.iMail;
+		return NestedMail.calculatePostage() + (Math.ceil((double)Value / 100) * 0.5);
+	}
+	
+	public String toString() //add insurance after the toString()
+	{
+		return super.toString() + " Insured of: " + Value;
+		//return NestedMail.toString() + " Insured of: " + Value;
+	}
+	
+	//auto generated getters and setters
+	public Mail getNestedMail()
+	{
+		return this.NestedMail;
 	}
 
-	public void setIMail(Mail iMail)
+	public void setNestedMail(Mail NestedMail)
 	{
-		this.iMail = iMail;
+		this.NestedMail = NestedMail;
 	}
 
 	public int getValue()
 	{
-		return value;
+		return Value;
 	}
 
-	public void setValue(int value) 
+	public void setValue(int Value) 
 	{
-		this.value = value;
-	}
-
-	@Override
-	public double calculatePostage()
-	{
-		return iMail.calculatePostage() + (Math.ceil((double)value / 100) * 0.5);
-	}
-	
-//	@Override
-//	public int compareTo(Object other)
-//	{
-//		return iMail.compareTo(other);
-//	}
-	
-	public String toString()
-	{
-		return super.toString() + " Insured of: " + value;
-		//return iMail.toString() + " Insured of: " + value;
+		this.Value = Value;
 	}
 }

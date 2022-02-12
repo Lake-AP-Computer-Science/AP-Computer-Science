@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class MailSorter
 {
-	public static void SortMail(ArrayList<Mail> mails, boolean ascending)
+	public static void SortMail(ArrayList<Mail> mails, boolean ascending) //with choice
 	{	
 		mails.sort(new Comparator<Mail>()
 		{

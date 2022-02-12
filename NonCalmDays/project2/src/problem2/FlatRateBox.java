@@ -3,9 +3,9 @@ package problem2;
 public class FlatRateBox extends PriorityMail
 {
 	//constructor
-	public FlatRateBox(double weight, int zone)
+	public FlatRateBox(double Weight, int Zone)
 	{
-		super(weight, zone);
+		super(Weight, Zone);
 	}
 
 	public FlatRateBox()
@@ -14,7 +14,7 @@ public class FlatRateBox extends PriorityMail
 	}
 	
 	@Override
-	public double calculatePostage()
+	public double calculatePostage() //calculates postage as it is "2x FRE cost"
 	{
 		FlatRateEnv FRE = new FlatRateEnv();
 		return FRE.calculatePostage() * 2;

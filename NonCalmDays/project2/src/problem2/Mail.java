@@ -7,35 +7,28 @@ public abstract class Mail extends Object implements Comparable<Object>
 {
 	public abstract double calculatePostage();
 	
-	public String toString()
+	public String toString() //write toString() method to print $dollars.cents
 	{
 		DecimalFormat dollars = new DecimalFormat("$0.00");
 		return dollars.format(calculatePostage());
-		
-		//debug line (comment the return above):
-		//return GetPriorityMail(this).toString();
 	}
 	
-	public PriorityMail GetPriorityMail(Mail Other)
-	{
-		//System.out.println(Other.getClass());
-		
-		if (Other instanceof PriorityMail)
+	public PriorityMail GetPriorityMail(Mail Other) //A get priority mail method that takes in any mail object and converts them into a priority mail
+	{	
+		if (Other instanceof PriorityMail) //if it is a priority mail, just cast it
 			return (PriorityMail)Other;
 		
-		if (Other instanceof MediaMail)
+		if (Other instanceof MediaMail) //if it is a media mail, get the priority mail from the media mail's composition
 				return ((MediaMail)Other).getPM();
 		
-		if (Other instanceof InsuredMail)
-				return GetPriorityMail(((InsuredMail)Other).getIMail());
+		if (Other instanceof InsuredMail) //if it is an insured mail, it doesn't have a definitive type as it can be any type of mail but insured, so we can call the function again (recursion) to strip it layer by layer (eg. a insured mail of an insured mail of a media mail)
+				return GetPriorityMail(((InsuredMail)Other).getNestedMail());
 		
-		//System.out.println("failed " + Other.getClass());
-		
-		return null;
+		return null; //nothing found- if this happens your code fucked up
 	}
  
 	@Override
-	public int compareTo(Object other)
+	public int compareTo(Object other) //compare based on raw postage then of the weight (stored in prioritymails in other classes as a container)
 	{
 		
 		PriorityMail Other = GetPriorityMail((Mail)other);
@@ -49,7 +42,6 @@ public abstract class Mail extends Object implements Comparable<Object>
 			return -1;
 		
 		//if costs are equal
-		System.out.println("S: " + this.calculatePostage() + " O: " + ((Mail)(other)).calculatePostage());
 		
 		if (Other.getWeight() == Self.getWeight())
 			return 0;
@@ -60,7 +52,7 @@ public abstract class Mail extends Object implements Comparable<Object>
 		return -1;
 	}
 	
-	public boolean equals(Object other)
+	public boolean equals(Object other) //ez implementaition, no lines
 	{
 		return compareTo(other) == 0;
 	}
@@ -138,7 +130,7 @@ public abstract class Mail extends Object implements Comparable<Object>
 	/*
 	 * Expected output:
 	 * $4.05
-	 * $6.05
+	 * $6.05 Insured of: 350
 	 * */
 			
 	// Test case 5 - Test comparisons
@@ -166,7 +158,7 @@ public abstract class Mail extends Object implements Comparable<Object>
 	/*
 	 * Expected Output 
 	 * Unsorted: [$24.30, $4.05, $6.05 Insured of: 350, $4.05, $8.10]
-	 * Sorted Ascending: [$4.05, $6.05 Insured of: 350, $4.05, $8.10, $24.30]
+	 * Sorted Ascending: [$4.05, $4.05, $6.05 Insured of: 350, $8.10, $24.30]
 	 * */
 			
 	// Last case - final-boss-lake-case with reading from file
@@ -182,7 +174,8 @@ public abstract class Mail extends Object implements Comparable<Object>
 			System.out.println("Sorted Lake Mail: " + Mails); //sorted
 
 	/* Expected Output (without debug output):
-	 * Sorted Lake Mail: [$4.05 zone: 2 weight: 1.0 Insured of: 200, $4.05 zone: 5 weight: 3.2 Insured of: 0, $4.05 zone: 8 weight: 5.7 Insured of: 540, $30.78 Insured of: 350]
+	 * Unsorted: [$5.05 Insured of: 200, $4.05, $7.05 Insured of: 540, $32.78 Insured of: 350]
+	 * Sorted Lake Mail: [$4.05, $5.05 Insured of: 200, $7.05 Insured of: 540, $32.78 Insured of: 350]
 	 */
 			
 		}

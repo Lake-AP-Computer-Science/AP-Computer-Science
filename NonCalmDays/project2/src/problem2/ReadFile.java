@@ -3,7 +3,7 @@ package problem2;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ReadFile 
+public class ReadFile //ReadFile copied from lake's code from last project modified for creating Mail objects
 {
 	
 	private String fileName;
@@ -36,47 +36,53 @@ public class ReadFile
 	
 	public ArrayList<Mail> getMails()
 	{
-		ArrayList<Mail> mails = new ArrayList<Mail>();
+		ArrayList<Mail> Mails = new ArrayList<Mail>();
 		
 		try {
 			for (String S : getList())
 			{
-				String[] deliminated = S.split(",");
 				
-				String type = deliminated[0];
-				double weight = Double.parseDouble(deliminated[1].strip());
-				int zone = Integer.parseInt(deliminated[2].strip());
-				int insurance = Integer.parseInt(deliminated[3].strip());
+				/*
+				 * what comes in is a big string such as "PriorityMail, 1.0, 2, 200"
+				*we split it at the commas to get each value, and strip() to remove excess spacing for parseType() methods
+				*/
+				
+				String[] Filtered = S.split(",");
+				
+				String Type = Filtered[0];
+				double Weight = Double.parseDouble(Filtered[1].strip());
+				int Zone = Integer.parseInt(Filtered[2].strip());
+				int Insurance = Integer.parseInt(Filtered[3].strip());
 				
 				Mail mailType = null;
 				
-				switch (type)
+				switch (Type) //create the new Type of mail depending on what is in text file
 				{
 					case "PriorityMail":
-						mailType = new PriorityMail(weight, zone);
+						mailType = new PriorityMail(Weight, Zone);
 						break;
 					case "FlatRateEnv":
-						mailType = new FlatRateEnv(weight, zone);
+						mailType = new FlatRateEnv(Weight, Zone);
 						break;
 					case "FlatRateBox":
-						mailType = new FlatRateEnv(weight, zone);
+						mailType = new FlatRateEnv(Weight, Zone);
 						break;
 					case "MediaMail":
-						mailType = new MediaMail(weight, zone);
+						mailType = new MediaMail(Weight, Zone);
 						break;
 				}
 				
-				if (insurance > 0)
-					mailType = new InsuredMail(mailType, insurance);
+				if (Insurance > 0) //if insured, wrap in Insurance
+					mailType = new InsuredMail(mailType, Insurance);
 				
-				mails.add(mailType);
+				Mails.add(mailType);
 			}
 		}
-		catch (Exception error)
+		catch (Exception Error)
 		{
-			error.printStackTrace();
+			Error.printStackTrace(); //oops
 		}
 		
-		return mails;
+		return Mails;
 	}
 }
