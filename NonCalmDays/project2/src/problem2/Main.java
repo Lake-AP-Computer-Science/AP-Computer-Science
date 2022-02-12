@@ -1,5 +1,7 @@
 package problem2;
 
+import java.util.ArrayList;
+
 //import java.util.ArrayList;
 
 public class Main
@@ -110,15 +112,15 @@ public class Main
 				
 		// Last case - final-boss-lake-case with reading from file
 				
-//				ReadFile R = new ReadFile("Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
-//				
-//				ArrayList<Mail> Mails = R.getMails();
-//				
-//				System.out.println("Unsorted: " + Mails); //unsorted
-//				
-//				MailSorter.SortMail(Mails, true); //sort ascending in package cost first and weight
-//				
-//				System.out.println("Sorted Lake Mail: " + Mails); //sorted
+				ReadFile R = new ReadFile("Mails.txt"); //replace local path with realpath (right click the .txt file and copy its path)
+				
+				ArrayList<Mail> Mails = R.getMails();
+				
+				System.out.println("Unsorted: " + Mails); //unsorted
+				
+				MailSorter.SortMail(Mails, true); //sort ascending in package cost first and weight
+				
+				System.out.println("Sorted Lake Mail: " + Mails); //sorted
 
 		/* Expected Output (without debug output):
 		 * Unsorted: [$5.05 Insured of: 200, $4.05, $7.05 Insured of: 540, $16.58 Insured of: 350]

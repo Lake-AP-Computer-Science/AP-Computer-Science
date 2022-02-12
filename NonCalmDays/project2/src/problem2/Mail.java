@@ -1,7 +1,6 @@
 package problem2;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public abstract class Mail extends Object implements Comparable<Object>
 {
@@ -35,21 +34,13 @@ public abstract class Mail extends Object implements Comparable<Object>
 		
 		PriorityMail Self = GetPriorityMail(this);
 		
-		if (((Mail)(other)).calculatePostage() > this.calculatePostage())
-			return 1;
+		double Cost = (((Mail)(other)).calculatePostage() - this.calculatePostage()); //if other is bigger than this it'll return something greater than 1, else less, if 0 compare weight instead
 		
-		if (((Mail)(other)).calculatePostage() < this.calculatePostage())
-			return -1;
+		if (Cost != 0)
+			return (int)(Cost); 
 		
 		//if costs are equal
-		
-		if (Other.getWeight() == Self.getWeight())
-			return 0;
-		
-		if (Other.getWeight() > Self.getWeight())
-			return 1;
-		
-		return -1;
+		return (int)(Other.getWeight() - Self.getWeight());
 	}
 	
 	public boolean equals(Object other) //ez implementaition, no lines
