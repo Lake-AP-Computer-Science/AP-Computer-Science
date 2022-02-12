@@ -63,9 +63,14 @@ public abstract class UniversalMail {
   }
 }
 
-//for the Mail class, say that it extends UniversalMail. then, change the methods to the statements below:
+//The updated Mail class should look like this: 
 
 /*
+public abstract class Mail extends UniversalMail implements Comparable
+{
+  
+  public abstract double calculatePostage();
+  
   public String toString(){
     return super.toString();
   }
@@ -76,4 +81,11 @@ public abstract class UniversalMail {
   public boolean equals(Object other){ //[4 points]
     return super.equals(other);
   }
+  
+  public static void main(String[] args){
+  
+  //insert test stuff here
+  
+  }
+}
 */
