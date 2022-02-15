@@ -92,12 +92,13 @@ public class SignalBST
 	}
 	
 	//combines and return the SignalBST that is  a combination of A and B
-	public void combine(SignalBST Other)
+	public SignalBST combine(SignalBST A, SignalBST B)
 	{
-		for (Node N : Other.GetNodes())
+		for(Node node : B.getNodes())
 		{
-			add(N);
+			A.add(node);
 		}
+		return A;
 	}
 	
 	public ArrayList<Node> GetNodes()
