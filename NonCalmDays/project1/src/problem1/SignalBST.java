@@ -6,9 +6,23 @@ public class SignalBST
 {
 	private ArrayList<Node> Nodes = new ArrayList<Node>();
 	
-	public SignalBST(Node Root)
+	public SignalBST(Object data) //the lake requirement
 	{
-		Nodes.add(Root);
+		try {
+			Node OneNode = (Node)data;
+			Nodes.add(OneNode); // root
+			return;
+		}
+		catch (Exception E) {};
+		
+		ArrayList<Node> NodesCasted = (ArrayList<Node>)data;
+		
+		Nodes.add(NodesCasted.remove(0)); // use top as node
+		
+		for (Node Node : NodesCasted)
+		{
+			add(Node);
+		}
 	}
 	
 	public SignalBST(Object data)
@@ -32,7 +46,7 @@ public class SignalBST
 	}
 	
 	//adds a node to the SignalBST according to the Binary Search Tree rules of insertion
-	public SignalBST add(Node node)
+	public SignalBST add(Node node) //lake requirement
 	{
 		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength());
 		
@@ -51,7 +65,7 @@ public class SignalBST
 	}
 	
 	//removes a node from the SignalBST according to the Binary Search Tree rules of deletion
-	public SignalBST remove(Node node)
+	public SignalBST remove(Node node) //lake requirement
 	{
 		Node AvaliableNode = FindNodeByStrength(GetRoot(), node.GetStrength());
 		
@@ -72,7 +86,7 @@ public class SignalBST
 	}
 	
 	//returns a list of signal strengths for the given signal pattern
-	public ArrayList<Integer> getSignalStrengths(String signalPattern)
+	public ArrayList<Integer> getSignalStrengths(String signalPattern) //lake requirement
 	{
 		ArrayList<Integer> Strengths = new ArrayList<Integer>();
 		
@@ -85,7 +99,7 @@ public class SignalBST
 	}
 	
 	//returns the maximum signal strength for the given signal pattern
-	public int getMaxSignalStrength(String signalPattern)
+	public int getMaxSignalStrength(String signalPattern) //lake requirement
 	{
 		ArrayList<Node> N = FindNodesByMessage(signalPattern);
 		return N.get(N.size() - 1).GetStrength();
@@ -94,9 +108,9 @@ public class SignalBST
 	//combines and return the SignalBST that is  a combination of A and B
 	public SignalBST combine(SignalBST A, SignalBST B)
 	{
-		for(Node node : B.getNodes())
+		for (Node N : B.GetNodes())
 		{
-			A.add(node);
+			A.add(N);
 		}
 		return A;
 	}
@@ -402,7 +416,7 @@ public class SignalBST
 		
 /* Test case 7 - Combine Signal BST */
 
-//		//tree
+		//tree
 //		Signal FirstSignal = new Signal("Cow", 1); // root
 //		Node First = new Node(FirstSignal);
 //		
@@ -446,7 +460,7 @@ public class SignalBST
 //		System.out.println("Second:");
 //		Tree2.PrettyPrint();
 //		
-//		Tree1.combine(Tree2);
+//		Tree1 = Tree1.combine(Tree1, Tree2);
 //		
 //		System.out.println("After:");
 //		Tree1.PrettyPrint();
@@ -468,6 +482,105 @@ public class SignalBST
  * 		 Strength: 3  Signals: [ "New Node At 3" x1, ]		 Strength: 9  Signals: [ "Unique" x1, ]
  */
 		
+		/* Test case 8 - Testing SignalBST constructor with manual add (same as first) and ArrayList */
+		
+//		Signal FirstSignal = new Signal("Cow", 1); // root
+//		Node First = new Node(FirstSignal);
+//		
+//		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		Node Second = new Node(SecondSignal);
+//		
+//		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		Node Third = new Node(ThirdSignal);
+//		
+//		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		Node Forth = new Node(ForthSignal);
+//		
+//		SignalBST Tree1 = new SignalBST(First);
+//		
+//		Tree1.add(Second);
+//		Tree1.add(Third);
+//		Tree1.add(Forth);
+//		
+//		Tree1.PrettyPrint(); //manual
+//		
+//		//redef to refresh references (else its bugged af)
+//		
+//		FirstSignal = new Signal("Cow", 1); // root
+//		First = new Node(FirstSignal);
+//		
+//		SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		Second = new Node(SecondSignal);
+//		
+//		ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		Third = new Node(ThirdSignal);
+//		
+//		ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		Forth = new Node(ForthSignal);
+//		
+//		ArrayList<Node> List = new ArrayList<Node>();
+//		
+//		List.add(First);
+//		List.add(Second);
+//		List.add(Third);
+//		List.add(Forth);
+//		
+//		SignalBST Tree2 = new SignalBST(List);
+//		
+//		Tree2.PrettyPrint();//list-wise
+		
+		/*they should print the same*/
+		
+/* Expected output (*s are just for comments continuation): 
+ * 		 Strength: 1  Signals: [ "Cow" x1, ]
+ * 		 Strength: 4  Signals: [ "Bull" x2,  "Calf" x1, ]
+ *      Strength: 1  Signals: [ "Cow" x1, ]
+ *      Strength: 4  Signals: [ "Bull" x2,  "Calf" x1, ]
+ */
+		
+		/* Test case 9 - Testing Node's manual construction by adding repeatedly vs constructor with ArrayList<Signal> */
+		
+//		ArrayList<Signal> S = new ArrayList<Signal>();
+//		
+//		Signal FirstSignal = new Signal("Cow", 1); // root
+//		
+//		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		
+//		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		
+//		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		
+//		Node NodeTest = new Node(FirstSignal);
+//		
+//		NodeTest.Add(SecondSignal);
+//		NodeTest.Add(ThirdSignal);
+//		NodeTest.Add(ForthSignal);
+//		
+//		System.out.println(NodeTest); //manual
+//		
+//		FirstSignal = new Signal("Cow", 1); // root
+//		
+//		SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+//		
+//		ThirdSignal = new Signal("Bull", 4); //should increment signal count
+//		
+//		ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+//		
+//		S.add(FirstSignal);
+//		S.add(SecondSignal);
+//		S.add(ThirdSignal);
+//		S.add(ForthSignal);
+//		
+//		NodeTest = new Node(S);
+//		
+//		System.out.println(NodeTest); //list-wise
+		
+		/*they should print the same*/
+		
+/* Expected output (*s are just for comments continuation): 
+ * 		 Strength: 1  Signals: [ "Cow" x1,  "Bull" x2,  "Calf" x1, ]
+ *		 Strength: 1  Signals: [ "Cow" x1,  "Bull" x2,  "Calf" x1, ]
+ */
 		
 /* The following test cases use Lake's 10-page-on-google-docs test case
  * which I have composed into characters to signify different patterns,
