@@ -8,10 +8,32 @@ public class Node
 	ArrayList<Signal> Signals = new ArrayList<Signal>();
 	int OverallStrength = 0;
 	
-	public Node(Signal S) 
+	/*public Node(Signal S) 
 	{
 		OverallStrength = S.GetStrength(); //Only need to do this once for sake of convience because all strengths stored in this node is same
 		Add(S);
+	}*/
+	
+	public Node(Object Data)
+	{
+		ArrayList<Signals> D = (ArrayList<Signals>)(Data);
+		
+		Signal S = null;
+		
+		if (D == null)
+		{
+			S = (Signal)Data;
+			OverallStrength = S.GetStrength();
+			Add(S);
+			return;
+		}
+		
+		S = D.get(0); 
+		
+		OverallStrength = S.getStrength();
+		
+		for (Signal Snls : S)
+			Add(Snls);
 	}
 	
 	public void Add(Signal S)
