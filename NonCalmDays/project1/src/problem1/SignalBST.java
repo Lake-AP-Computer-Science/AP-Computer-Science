@@ -23,8 +23,12 @@ public class SignalBST
 			return;
 		}
 		
+		nodes.add(N.remove(0));
+		
 		for (Node Ns : N)
-			nodes.add(Ns);
+		{
+			add(Ns);
+		}
 	}
 	
 	//adds a node to the SignalBST according to the Binary Search Tree rules of insertion
