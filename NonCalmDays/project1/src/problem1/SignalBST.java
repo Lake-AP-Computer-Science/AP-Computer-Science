@@ -6,10 +6,10 @@ public class SignalBST
 {
 	private ArrayList<Node> Nodes = new ArrayList<Node>();
 	
-	/*public SignalBST(Node Root)
+	public SignalBST(Node Root)
 	{
 		Nodes.add(Root);
-	}*/
+	}
 	
 	public SignalBST(Object data)
 	{
