@@ -8,10 +8,19 @@ public class Node
 	ArrayList<Signal> Signals = new ArrayList<Signal>();
 	int OverallStrength = 0;
 	
-	public Node(Signal S) 
+	/*public Node(Signal S) 
 	{
 		OverallStrength = S.GetStrength(); //Only need to do this once for sake of convienence because all strengths stored in this node is same
 		Add(S);
+	}*/
+	
+		public Node(ArrayList<Signal> signals)
+	{
+		for(Signal s: signals)
+		{
+			nodeStrength = s.getStrength();
+			add(s);
+		}
 	}
 	
 	public Node(ArrayList<Signal> Signals) //lake requirement

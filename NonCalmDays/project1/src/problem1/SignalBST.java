@@ -25,6 +25,26 @@ public class SignalBST
 		}
 	}
 	
+	public SignalBST(Object data)
+	{
+		ArrayList<Node> N = (ArrayList<Node>)data;
+		
+		if (N == null)
+		{
+			Node Ns = (Node)data;
+			
+			nodes.add(Ns); // root
+			return;
+		}
+		
+		nodes.add(N.remove(0));
+		
+		for (Node Ns : N)
+		{
+			add(Ns);
+		}
+	}
+	
 	//adds a node to the SignalBST according to the Binary Search Tree rules of insertion
 	public SignalBST add(Node node) //lake requirement
 	{
