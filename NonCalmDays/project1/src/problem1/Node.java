@@ -14,26 +14,13 @@ public class Node
 		Add(S);
 	}*/
 	
-	public Node(Object Data)
+		public Node(ArrayList<Signal> signals)
 	{
-		ArrayList<Signals> D = (ArrayList<Signals>)(Data);
-		
-		Signal S = null;
-		
-		if (D == null)
+		for(Signal s: signals)
 		{
-			S = (Signal)Data;
-			OverallStrength = S.GetStrength();
-			Add(S);
-			return;
+			nodeStrength = s.getStrength();
+			add(s);
 		}
-		
-		S = D.get(0); 
-		
-		OverallStrength = S.getStrength();
-		
-		for (Signal Snls : S)
-			Add(Snls);
 	}
 	
 	public void Add(Signal S)
