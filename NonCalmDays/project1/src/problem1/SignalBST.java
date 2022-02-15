@@ -6,9 +6,25 @@ public class SignalBST
 {
 	private ArrayList<Node> Nodes = new ArrayList<Node>();
 	
-	public SignalBST(Node Root)
+	/*public SignalBST(Node Root)
 	{
 		Nodes.add(Root);
+	}*/
+	
+	public SignalBST(Object data)
+	{
+		ArrayList<Node> N = (ArrayList<Node>)data;
+		
+		if (N == null)
+		{
+			Node Ns = (Node)data;
+			
+			nodes.add(Ns); // root
+			return;
+		}
+		
+		for (Node Ns : N)
+			nodes.add(Ns);
 	}
 	
 	//adds a node to the SignalBST according to the Binary Search Tree rules of insertion
