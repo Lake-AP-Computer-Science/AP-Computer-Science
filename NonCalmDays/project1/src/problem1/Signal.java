@@ -6,7 +6,7 @@ public class Signal
     private int Strength = 0;
     private int Count = 1;
 	
-    public Signal(String Message, int Strength) {
+    public Signal(String Message, int Strength) { //lake requirement
         this.Message = Message;
         this.Strength = Strength;
     }

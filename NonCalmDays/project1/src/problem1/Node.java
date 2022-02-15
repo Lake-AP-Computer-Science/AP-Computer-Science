@@ -10,8 +10,18 @@ public class Node
 	
 	public Node(Signal S) 
 	{
-		OverallStrength = S.GetStrength(); //Only need to do this once for sake of convience because all strengths stored in this node is same
+		OverallStrength = S.GetStrength(); //Only need to do this once for sake of convienence because all strengths stored in this node is same
 		Add(S);
+	}
+	
+	public Node(ArrayList<Signal> Signals) //lake requirement
+	{
+		OverallStrength = Signals.get(0).GetStrength(); //just get the first one since they're all the same strength
+		
+		for (Signal S : Signals)
+		{
+			Add(S);
+		}
 	}
 	
 	public void Add(Signal S)
