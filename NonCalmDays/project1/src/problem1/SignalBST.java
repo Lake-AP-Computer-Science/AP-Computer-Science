@@ -586,13 +586,10 @@ public class SignalBST
 		
 		/* Expected output (for the first 10) (*s are just for comments continuation):
 		 * 
-		 * Strength: 4  Signals: [ "A" x6,  "F" x1,  "B" x5, ]
-		 * Strength: 1  Signals: [ "A" x2,  "C" x4,  "F" x7,  "K" x5, ]		 Strength: 10  Signals: [ "B" x7,  "F" x6,  "I" x8, ]
-		 * Strength: 2  Signals: [ "B" x2,  "D" x3,  "" x1, ]		 Strength: 7  Signals: [ "A" x7, ]		 Strength: 15  Signals: [ "E" x13,  "I" x5,  "G" x8, ]
-		 * Strength: 3  Signals: [ "E" x1,  "A" x1,  "C" x4, ]		 Strength: 5  Signals: [ "A" x1,  "E" x4, ]		 Strength: 8  Signals: [ "B" x7, ]		 Strength: 11  Signals: [ "E" x1,  "C" x7,  "G" x5, ]
-		 * Strength: 6  Signals: [ "B" x1,  "F" x5, ]		 Strength: 9  Signals: [ "E" x1,  "A" x1,  "K" x8, ]		 Strength: 12  Signals: [ "F" x1,  "D" x7,  "J" x5,  "H" x8, ]
-		 * Strength: 13  Signals: [ "C" x7,  "G" x13, ]
-		 * Strength: 14  Signals: [ "B" x7,  "H" x5,  "J" x8, ]
+		 * Strength: 8  Signals: [ "a" x1, ]
+		 * Strength: 4  Signals: [ "a" x1, ]		 Strength: 12  Signals: [ "a" x1, ]
+		 * Strength: 2  Signals: [ "a" x1, ]		 Strength: 6  Signals: [ "a" x1, ]		 Strength: 10  Signals: [ "a" x1, ]		 Strength: 14  Signals: [ "a" x1, ]
+		 * Strength: 1  Signals: [ "a" x1, ]		 Strength: 3  Signals: [ "a" x1, ]		 Strength: 5  Signals: [ "a" x1, ]		 Strength: 7  Signals: [ "a" x1, ]		 Strength: 9  Signals: [ "a" x1, ]		 Strength: 11  Signals: [ "a" x1, ]		 Strength: 13  Signals: [ "a" x1, ]		 Strength: 15  Signals: [ "a" x1, ]
 		 */
 		
 	}
