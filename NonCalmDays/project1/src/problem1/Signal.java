@@ -6,9 +6,9 @@ public class Signal
     private int Strength = 0;
     private int Count = 1;
 	
-    public Signal(String data, int Strength) { //lake requirement
+    public Signal(String data, int s) { //lake requirement
         this.Message = data;
-        this.Strength = Strength;
+        this.Strength = s;
     }
     
     //Getters and setters
