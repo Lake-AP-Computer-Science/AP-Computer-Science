@@ -42,9 +42,12 @@ public class Cryptic
 	{
 		String Return = "";
 		
+		String Code = keycode.substring(0, key.length());
+		
 		for (int i = 0; i < source.length(); i++)
 		{
-			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf(key.charAt(i)));
+			//System.out.println(String.valueOf(keycode.charAt(i % keycode.length())));
+			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf(Code.charAt(i % Code.length()))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
 		return Return;
@@ -54,9 +57,11 @@ public class Cryptic
 	{
 		String Return = "";
 		
+		String Code = keycode.substring(0, key.length());
+		
 		for (int i = 0; i < coded.length(); i++)
 		{
-			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf(key.charAt(i)));
+			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf(Code.charAt(i % Code.length()))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
 		return Return;
@@ -68,8 +73,12 @@ public class Cryptic
 		//System.out.println("Random code: " + C.getKeycode());
 		//System.out.println("Test character: " + C.getCode("a", "b"));
 		
-		String Encrypted = C.encrypt("qmbo", "aaaa");
-		String Decrypted = C.decrypt(Encrypted, "aaaa");
+		C.setKeycode("920715");
+		
+		System.out.println(C.getKeycode());
+		
+		String Encrypted = C.encrypt("DISCOMBOBULATED", "MONDAY");
+		String Decrypted = C.decrypt(Encrypted, "MONDAY");
 		
 		System.out.println("Get Encrypted: " + Encrypted);
 		System.out.println("Get decrypted " + Decrypted);
