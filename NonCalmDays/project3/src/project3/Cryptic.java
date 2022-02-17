@@ -13,7 +13,7 @@ public class Cryptic
 		Random rand = new Random();
 		
 		for (int i = 0; i < 10; ++i)
-			keycode += String.valueOf(rand.nextInt(9));
+			keycode += String.valueOf(rand.nextInt(10));
 	}
 
 	//Create a public accessor method to get the generated keycode [2 points]
@@ -71,9 +71,7 @@ public class Cryptic
 	{
 		Cryptic C = new Cryptic();
 		//System.out.println("Random code: " + C.getKeycode());
-		//System.out.println("Test character: " + C.getCode("a", "b"));
-		
-		C.setKeycode("920715");
+		//System.out.println("Test character: " + C.getCode(C.setKeycode("920715");
 		
 		System.out.println(C.getKeycode());
 		

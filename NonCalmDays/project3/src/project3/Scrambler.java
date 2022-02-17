@@ -7,6 +7,7 @@ public class Scrambler {
 	//Precondition: encryptedMessage is not null and was properly encrypted 
 	public Scrambler(String encryptedMessage) //[1 point]
 	{
+		this.encryptedMessage = encryptedMessage;
 	}
 	
 	//returns the encryptedMessage
@@ -23,13 +24,51 @@ public class Scrambler {
 	
 	public String scramble() //[5 points]
 	{
-		return null;
+		String Return = "";
+		
+		char[] A = this.encryptedMessage.substring(0, (int)Math.ceil(this.encryptedMessage.length() / 2)).toCharArray();
+		char[] B = this.encryptedMessage.substring((int)Math.ceil(this.encryptedMessage.length() / 2), this.encryptedMessage.length()).toCharArray();
+		
+		for (int i = 0; i < A.length; i++)
+		{
+			Return += String.valueOf(A[i]);
+			
+			if (i < B.length)
+				Return += String.valueOf(B[i]);
+		}
+		
+		return Return;
+		
 	}
 	
 	//Precondition: scrambledEncryptedMessage is not null and was properly encrypted //and scrambled
 	//returns the original encrypted message
 	public String unscramble(String scrambledEncryptedMessage) //[5 points]
 	{
-		return null;Í
+		String A = "";
+		String B = "";
+
+		for (int i = 0; i < scrambledEncryptedMessage.length(); ++i)
+		{
+			if (i % 2 == 0)
+				A += String.valueOf(scrambledEncryptedMessage.charAt(i));
+			else
+				B += String.valueOf(scrambledEncryptedMessage.charAt(i));
+		}
+		
+		return A + B;
+	}
+	
+	public static void main(String args[])
+	{
+		Scrambler A = new Scrambler("hadlet");
+		
+		String B = A.scramble();
+		
+		System.out.println(B);
+		
+		System.out.println(A.unscramble(B));
+		
+		
 	}
 }
