@@ -1,5 +1,9 @@
 package project3;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Cryptic
@@ -10,10 +14,13 @@ public class Cryptic
 	public Cryptic() //[5 points]
 	{
 		keycode = "";
-		Random rand = new Random();
 		
-		for (int i = 0; i < 10; ++i)
-			keycode += String.valueOf(rand.nextInt(10));
+		ArrayList<Integer> Ten = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+		
+		Collections.shuffle(Ten);
+		
+		while (!Ten.isEmpty())
+			keycode += String.valueOf(Ten.remove(0));
 	}
 
 	//Create a public accessor method to get the generated keycode [2 points]
