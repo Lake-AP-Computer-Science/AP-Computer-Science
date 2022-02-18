@@ -77,7 +77,7 @@ public class Cryptic
 	{
 		Cryptic C = new Cryptic();
 		
-		/*Test case 1 - Lake monday case*/
+/*Test case 1 - Lake monday case*/
 
 //		C.setKeycode("920175");
 //		
@@ -89,13 +89,13 @@ public class Cryptic
 //		System.out.println("Get Encrypted: " + Encrypted);
 //		System.out.println("Get Decrypted: " + Decrypted);
 		
-		/* Expected output:
-		 * 920175
-		 * Get Encrypted: MKSDVRKQBVSF]GD
-		 * Get Decrypted: DISCOMBOBULATED
-		 */
+/* Expected output:
+ * 920175
+ * Get Encrypted: MKSDVRKQBVSF]GD
+ * Get Decrypted: DISCOMBOBULATED
+ */
 		
-		/*Test case 2 - A shift case*/
+/*Test case 2 - A shift case*/
 		
 //		C.setKeycode("123456789");
 //		
@@ -105,10 +105,10 @@ public class Cryptic
 //		System.out.println("Get Encrypted: " + Encrypted);
 //		System.out.println("Get Decrypted: " + Decrypted);
 		
-		/* Expected output:
-		 * Get Encrypted: bbbbbb
-		 * Get Decrypted: aaaaaa
-		 */
+/* Expected output:
+ * Get Encrypted: bbbbbb
+ * Get Decrypted: aaaaaa
+ */
 		
 		
 		
