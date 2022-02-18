@@ -53,8 +53,8 @@ public class Cryptic
 		
 		for (int i = 0; i < source.length(); i++)
 		{
-			//System.out.println(String.valueOf(keycode.charAt(i % keycode.length())));
-			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf(Code.charAt(i % Code.length()))); //String.valueOf(key.charAt(i % key.length())));
+			System.out.println((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))));
+			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
 		return Return;
@@ -68,7 +68,7 @@ public class Cryptic
 		
 		for (int i = 0; i < coded.length(); i++)
 		{
-			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf(Code.charAt(i % Code.length()))); //String.valueOf(key.charAt(i % key.length())));
+			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
 		return Return;
@@ -79,6 +79,8 @@ public class Cryptic
 		Cryptic C = new Cryptic();
 		//System.out.println("Random code: " + C.getKeycode());
 		//System.out.println("Test character: " + C.getCode(C.setKeycode("920715");
+		
+		C.setKeycode("920175");
 		
 		System.out.println(C.getKeycode());
 		
