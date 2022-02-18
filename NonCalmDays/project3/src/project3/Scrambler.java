@@ -81,7 +81,7 @@ Get Unscrambled: hadlet
               
 /* Test Case 1 - Monday */ 
 
-//      Scrambler s = new Scrambler("monday");
+//		Scrambler s = new Scrambler("monday");
         
 /* Expected Output: 
 Get Scrambled: mdoany
@@ -135,12 +135,12 @@ Get Unscrambled: poopoo
 //        Scrambler s = new Scrambler(Original);
 //	      
 //      	System.out.println("Scrambled Case Passed?: " + ScrambledExpected.equals(s.scramble()));
-//      	System.out.println("Unscrambled Case Passed?: " + UnscrambledExpected.equals(s.unscramble(s.scramble())) + "\n");
+//      	System.out.println("Unscrambled Case Passed?: " + UnscrambledExpected.equals(s.unscramble(s.getEncryptedMessage())) + "\n");
 		
       	//keep below code uncommented, universal for all cases
       	
       	System.out.println("Get Scrambled: " + s.scramble());
-        System.out.println("Get Unscrambled: " + s.unscramble(s.scramble()));
+        System.out.println("Get Unscrambled: " + s.unscramble(s.getEncryptedMessage()));
       	
 	}
 }
