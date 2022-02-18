@@ -56,8 +56,6 @@ public class Cryptic
 			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
-		this.keycode = Return;
-		
 		return Return;
 	}
 	//Precondition: coded and key are not null //Postcondition: returns the entire decrypted message 
@@ -72,8 +70,6 @@ public class Cryptic
 			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
-		this.keycode = Return;
-		
 		return Return;
 	}
 	
@@ -81,10 +77,12 @@ public class Cryptic
 	{
 		String Return = "";
 		
-		for (int i = 0; i < Key.length() - 1; ++i)
+		for (int i = 0; i < Key.length(); ++i)
 		{
-			Return += keycode.substring(i % keycode.length(), i % keycode.length() + 1);
+			Return += keycode.charAt(i % keycode.length());
 		}
+		
+		System.out.println(Return);
 		
 		return Return;
 	}
@@ -113,13 +111,14 @@ public class Cryptic
 		
 /*Test case 2 - A shift case*/
 		
-//		C.setKeycode("123456789");
-//		
-//		String Encrypted = C.encrypt("aaaaaa", "a"); //shifting a one should be b
-//		String Decrypted = C.decrypt(Encrypted, "a");
-//		
-//		System.out.println("Get Encrypted: " + Encrypted);
-//		System.out.println("Get Decrypted: " + Decrypted);
+		C.setKeycode("123456789");
+		System.out.println(C.getCodeSubbed("a"));
+		
+		String Encrypted = C.encrypt("aaaaaa", "a"); //shifting a one should be b
+		String Decrypted = C.decrypt(Encrypted, "a");
+		
+		System.out.println("Get Encrypted: " + Encrypted);
+		System.out.println("Get Decrypted: " + Decrypted);
 		
 /* Expected output:
  * Get Encrypted: bbbbbb
