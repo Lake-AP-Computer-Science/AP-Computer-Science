@@ -53,7 +53,6 @@ public class Cryptic
 		
 		for (int i = 0; i < source.length(); i++)
 		{
-			System.out.println((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))));
 			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
 		
@@ -77,18 +76,43 @@ public class Cryptic
 	public static void main(String args[])
 	{
 		Cryptic C = new Cryptic();
-		//System.out.println("Random code: " + C.getKeycode());
-		//System.out.println("Test character: " + C.getCode(C.setKeycode("920715");
 		
-		C.setKeycode("920175");
+		/*Test case 1 - Lake monday case*/
+
+//		C.setKeycode("920175");
+//		
+//		System.out.println(C.getKeycode());
+//		
+//		String Encrypted = C.encrypt("DISCOMBOBULATED", "MONDAY");
+//		String Decrypted = C.decrypt(Encrypted, "MONDAY");
+//		
+//		System.out.println("Get Encrypted: " + Encrypted);
+//		System.out.println("Get Decrypted: " + Decrypted);
 		
-		System.out.println(C.getKeycode());
+		/* Expected output:
+		 * 920175
+		 * Get Encrypted: MKSDVRKQBVSF]GD
+		 * Get Decrypted: DISCOMBOBULATED
+		 */
 		
-		String Encrypted = C.encrypt("DISCOMBOBULATED", "MONDAY");
-		String Decrypted = C.decrypt(Encrypted, "MONDAY");
+		/*Test case 2 - A shift case*/
 		
-		System.out.println("Get Encrypted: " + Encrypted);
-		System.out.println("Get decrypted " + Decrypted);
+//		C.setKeycode("123456789");
+//		
+//		String Encrypted = C.encrypt("aaaaaa", "a"); //shifting a one should be b
+//		String Decrypted = C.decrypt(Encrypted, "a");
+//		
+//		System.out.println("Get Encrypted: " + Encrypted);
+//		System.out.println("Get Decrypted: " + Decrypted);
+		
+		/* Expected output:
+		 * Get Encrypted: bbbbbb
+		 * Get Decrypted: aaaaaa
+		 */
+		
+		
+		
+		
 	}
 
 }

@@ -26,8 +26,10 @@ public class Scrambler {
 	{
 		String Return = "";
 		
-		char[] A = this.encryptedMessage.substring(0, (int)Math.ceil(this.encryptedMessage.length() / 2)).toCharArray();
-		char[] B = this.encryptedMessage.substring((int)Math.ceil(this.encryptedMessage.length() / 2), this.encryptedMessage.length()).toCharArray();
+		char[] A = this.encryptedMessage.substring(0, (int)Math.ceil((double)this.encryptedMessage.length() / 2)).toCharArray();
+		//System.out.println(A);
+		char[] B = this.encryptedMessage.substring((int)Math.ceil((double)this.encryptedMessage.length() / 2), this.encryptedMessage.length()).toCharArray();
+		//System.out.println(B);
 		
 		for (int i = 0; i < A.length; i++)
 		{
@@ -61,14 +63,80 @@ public class Scrambler {
 	
 	public static void main(String args[])
 	{
-		Scrambler A = new Scrambler("hadlet");
+
+//ty max for writing these test cases <3
 		
-		String B = A.scramble();
+/* Test Case 0 - hadlet */
 		
-		System.out.println(B);
+	    Scrambler s = new Scrambler("hadlet");
 		
-		System.out.println(A.unscramble(B));
+/* Expected Output: 
+Get Scrambled: hlaedt
+Get Unscrambled: hadlet
+ * */
+              
+/* Test Case 1 - Monday */ 
+
+//      Scrambler s = new Scrambler("monday");
+        
+/* Expected Output: 
+Get Scrambled: mdoany
+Get Unscrambled: monday
+* */
+
+/* Test Case 2 - Alphabet (ODD NUMBERED CASE) */
+
+//	      Scrambler s = new Scrambler("abcde");
+
+/* Expected Output:
+Get Scrambled: adbec
+Get Unscrambled: abcde
+ */
+      
+/* Test Case 3 - mixed */
 		
+//      Scrambler s = new Scrambler("29[]ds2hiwefoihpjq23");
+  
+/* Expected Output:
+Get Scrambled: 2e9f[o]idhsp2jhqi2w3
+Get Unscrambled: 29[]ds2hiwefoihpjq23
+*/
 		
+/* Test Case 4 - one-char edge case */
+
+//      Scrambler s = new Scrambler("a");
+
+/* Expected Output:
+Get Scrambled: a
+Get Unscrambled: a
+*/
+      
+/* Test Case 5 - how good you are at code */
+
+//      Scrambler s = new Scrambler("poopoo");
+      
+/* Expected Output:
+Get Scrambled: ppoooo
+Get Unscrambled: poopoo
+*/
+      
+/* Test Case 6 - Lake Level Test Case */
+		
+		/*this case is too long for human grading so script will say if you passed or not.*/
+		
+//		String Original = "iohewoiuebohfljkvwiosdhvoweifhnvopwedkcsjkoiuwejdvnoiweunvi0982379408170398247123";
+//		String ScrambledExpected = "ikoohieuwwoeijudevbnoohifwlejuknvvwii0o9s8d2h3v7o9w4e0i8f1h7n0v3o9p8w2e4d7k1c2s3j";
+//		String UnscrambledExpected = "iohewoiuebohfljkvwiosdhvoweifhnvopwedkcsjkoiuwejdvnoiweunvi0982379408170398247123";
+//		
+//        Scrambler s = new Scrambler(Original);
+//	      
+//      	System.out.println("Scrambled Case Passed?: " + ScrambledExpected.equals(s.scramble()));
+//      	System.out.println("Unscrambled Case Passed?: " + UnscrambledExpected.equals(s.unscramble(s.scramble())) + "\n");
+		
+      	//keep below code uncommented, universal for all cases
+      	
+      	System.out.println("Get Scrambled: " + s.scramble());
+        System.out.println("Get Unscrambled: " + s.unscramble(s.scramble()));
+      	
 	}
 }
