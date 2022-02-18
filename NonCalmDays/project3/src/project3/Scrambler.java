@@ -39,6 +39,8 @@ public class Scrambler {
 				Return += String.valueOf(B[i]);
 		}
 		
+		this.encryptedMessage = Return;
+		
 		return Return;
 		
 	}
@@ -57,6 +59,8 @@ public class Scrambler {
 			else
 				B += String.valueOf(scrambledEncryptedMessage.charAt(i));
 		}
+		
+		this.encryptedMessage = A + B;
 		
 		return A + B;
 	}

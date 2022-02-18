@@ -49,12 +49,14 @@ public class Cryptic
 	{
 		String Return = "";
 		
-		String Code = keycode.substring(0, key.length());
+		String Code = getCodeSubbed(key);
 		
 		for (int i = 0; i < source.length(); i++)
 		{
 			Return += getCode(String.valueOf(source.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
 		}
+		
+		this.keycode = Return;
 		
 		return Return;
 	}
@@ -63,11 +65,25 @@ public class Cryptic
 	{
 		String Return = "";
 		
-		String Code = keycode.substring(0, key.length());
+		String Code = getCodeSubbed(key);
 		
 		for (int i = 0; i < coded.length(); i++)
 		{
 			Return += getSource(String.valueOf(coded.charAt(i)), String.valueOf((char)Integer.parseInt(String.valueOf(Code.charAt(i % Code.length()))))); //String.valueOf(key.charAt(i % key.length())));
+		}
+		
+		this.keycode = Return;
+		
+		return Return;
+	}
+	
+	public String getCodeSubbed(String Key)
+	{
+		String Return = "";
+		
+		for (int i = 0; i < Key.length() - 1; ++i)
+		{
+			Return += keycode.substring(i % keycode.length(), i % keycode.length() + 1);
 		}
 		
 		return Return;
@@ -109,8 +125,6 @@ public class Cryptic
  * Get Encrypted: bbbbbb
  * Get Decrypted: aaaaaa
  */
-		
-		
 		
 		
 	}
