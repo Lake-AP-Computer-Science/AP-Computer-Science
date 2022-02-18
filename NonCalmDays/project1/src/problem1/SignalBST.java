@@ -464,50 +464,50 @@ public class SignalBST
 		
 		/* Test case 8 - Testing SignalBST constructor with manual add (same as first) and ArrayList */
 		
-//		Signal FirstSignal = new Signal("Cow", 1); // root
-//		Node First = new Node(FirstSignal);
-//		
-//		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
-//		Node Second = new Node(SecondSignal);
-//		
-//		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
-//		Node Third = new Node(ThirdSignal);
-//		
-//		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
-//		Node Forth = new Node(ForthSignal);
-//		
-//		SignalBST Tree1 = new SignalBST(First);
-//		
-//		Tree1.add(Second);
-//		Tree1.add(Third);
-//		Tree1.add(Forth);
-//		
-//		Tree1.PrettyPrint(); //manual
-//		
-//		//redef to refresh references (else its bugged af)
-//		
-//		FirstSignal = new Signal("Cow", 1); // root
-//		First = new Node(FirstSignal);
-//		
-//		SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
-//		Second = new Node(SecondSignal);
-//		
-//		ThirdSignal = new Signal("Bull", 4); //should increment signal count
-//		Third = new Node(ThirdSignal);
-//		
-//		ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
-//		Forth = new Node(ForthSignal);
-//		
-//		ArrayList<Node> List = new ArrayList<Node>();
-//		
-//		List.add(First);
-//		List.add(Second);
-//		List.add(Third);
-//		List.add(Forth);
-//		
-//		SignalBST Tree2 = new SignalBST(List);
-//		
-//		Tree2.PrettyPrint();//list-wise
+		Signal FirstSignal = new Signal("Cow", 1); // root
+		Node First = new Node(FirstSignal);
+		
+		Signal SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+		Node Second = new Node(SecondSignal);
+		
+		Signal ThirdSignal = new Signal("Bull", 4); //should increment signal count
+		Node Third = new Node(ThirdSignal);
+		
+		Signal ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+		Node Forth = new Node(ForthSignal);
+		
+		SignalBST Tree1 = new SignalBST(First);
+		
+		Tree1.add(Second);
+		Tree1.add(Third);
+		Tree1.add(Forth);
+		
+		Tree1.PrettyPrint(); //manual
+		
+		//redef to refresh references (else its bugged af)
+		
+		FirstSignal = new Signal("Cow", 1); // root
+		First = new Node(FirstSignal);
+		
+		SecondSignal = new Signal("Bull", 4); //make new node on right of 1 with bull
+		Second = new Node(SecondSignal);
+		
+		ThirdSignal = new Signal("Bull", 4); //should increment signal count
+		Third = new Node(ThirdSignal);
+		
+		ForthSignal = new Signal("Calf", 4); //should go to 4th node make new message
+		Forth = new Node(ForthSignal);
+		
+		ArrayList<Node> List = new ArrayList<Node>();
+		
+		List.add(First);
+		List.add(Second);
+		List.add(Third);
+		List.add(Forth);
+		
+		SignalBST Tree2 = new SignalBST(List);
+		
+		Tree2.PrettyPrint();//list-wise
 		
 		/*they should print the same*/
 		
@@ -567,22 +567,22 @@ public class SignalBST
  * get it from: https://github.com/Lake-AP-Computer-Science/AP-Computer-Science/blob/main/NonCalmDays/project1/Signals.txt
  */
 		
-		ReadFile F = new ReadFile("Signals.txt"); //
-		
-		ArrayList<Node> Nodes = F.getNodes();
-		
-		SignalBST Tree = new SignalBST(Nodes.get(0));
-		
-		Nodes.remove(0);
-		
-		Nodes.subList(0, 10); //for the first 10
-		
-		for (Node N : Nodes)
-		{
-			Tree.add(N);
-		}
-		
-		Tree.PrettyPrint();
+//		ReadFile F = new ReadFile("Signals.txt"); //
+//		
+//		ArrayList<Node> Nodes = F.getNodes();
+//		
+//		SignalBST Tree = new SignalBST(Nodes.get(0));
+//		
+//		Nodes.remove(0);
+//		
+//		Nodes.subList(0, 10); //for the first 10
+//		
+//		for (Node N : Nodes)
+//		{
+//			Tree.add(N);
+//		}
+//		
+//		Tree.PrettyPrint();
 		
 		/* Expected output (for the first 10) (*s are just for comments continuation):
 		 * 
