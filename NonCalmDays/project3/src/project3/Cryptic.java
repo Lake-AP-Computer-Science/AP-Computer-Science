@@ -3,8 +3,6 @@ package project3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 public class Cryptic
 {
@@ -81,8 +79,6 @@ public class Cryptic
 		{
 			Return += keycode.charAt(i % keycode.length());
 		}
-		
-		System.out.println(Return);
 		
 		return Return;
 	}
