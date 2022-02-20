@@ -117,6 +117,7 @@ public class Cryptic
 		System.out.println("Get Decrypted: " + Decrypted);
 		
 /* Expected output:
+ * 1
  * Get Encrypted: bbbbbb
  * Get Decrypted: aaaaaa
  */
