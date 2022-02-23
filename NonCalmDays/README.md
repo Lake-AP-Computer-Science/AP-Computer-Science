@@ -1,1 +1,1 @@
-Don't click on the file project 4. I made it on accident.
+The file project 4 has the updated / changed Node and Case class that Mr. Lake wants us to have.
