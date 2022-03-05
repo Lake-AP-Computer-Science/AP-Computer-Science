@@ -1,0 +1,61 @@
+package problem4;
+
+import java.util.Arrays;
+import java.util.TreeMap;
+
+public class Crime
+{
+	private String victimName, perpetratorName, typeOfCrime;
+	TreeMap<String, Integer> type = new TreeMap<>();
+	TreeMap<String, Integer> crime =  new TreeMap<>();
+	
+	public Crime(String vName, String pName, String typeOfCrime) //[3 points]
+	{
+		this.victimName = vName;
+		this.perpetratorName = pName;
+		this.typeOfCrime = typeOfCrime;
+	}
+	
+	//Do not create an instance variable to hold the priority.
+	//Instead use a TreeMap to store the crime priorities according to the listed ones above.
+	//Combines the case type digit with the crime value to generate a priority number.
+	public int getPriority() //[3 points]
+	{
+		type.put("Civil Case", 2);
+		type.put("Criminal Case", 1);
+		type.put("Juvenile Case", 3);
+		type.put("Traffic Case", 4);		
+		crime.put("Aiding and Abetting/Accessory", 9);
+		crime.put("Arson", 8);
+		crime.put("Assault and Battery", 7);
+		crime.put("Bribery", 15);
+		crime.put("Burglary", 14);
+		crime.put("Child Abuse", 5);
+		crime.put("Computer Crime", 16);
+		crime.put("Conspiracy", 17);
+		crime.put("Credit/Debit Card Fraud", 18);
+		crime.put("Disorderly Conduct", 19);
+		crime.put("Domestic Violence", 10);
+		crime.put("Drug Cultivation", 20);
+		crime.put("Drug Distribution/Trafficking", 21);
+		crime.put("Drug Cultivation and Manufacturing", 22);
+		crime.put("Drug Possession", 23);
+		crime.put("Kidnapping", 6);
+		crime.put("Involuntary Manslaughter", 4);
+		crime.put("Voluntary Manslaughter", 3);
+		crime.put("First Degree Murder", 1);
+		crime.put("Second Degree Murder", 2);
+		crime.put("Perjury", 12);
+		crime.put("Robbery", 11);
+		crime.put("Theft/Larceny", 13);
+		
+		String[] str = typeOfCrime.split(" ");
+		return Integer.parseInt(types.get(str[0] + " " + str[1]) + String.valueOf(crimes.get(String.join(" ", Arrays.copyOfRange(str, 2, str.length)))));
+	}
+	
+	//toString
+	public String toString()
+	{
+		return "victim name: " + victimName + ", perpetrator name: " + perpetratorName + ", Crime: " + typeOfCrime + ","; 
+	}
+}
