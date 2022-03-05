@@ -1,6 +1,6 @@
-package problem4;
+package project4;
 
-public class Main
+public class main
 {
     public static void main(String[] args) 
     {
@@ -8,7 +8,7 @@ public class Main
         
         //Output: (dates are randomized but should be in order)
         
-//        Victim Name: Me; Perpetrator Name: Mr. Rennie; Crime: Criminal Case First Degree Murder; Priority: 11 | Case Date: 05/28/2029
+//        Victim Name: Me; Perpetrator Name: Mr. Rennie; Crime: Criminal Case First Degree Murder; Priority: 11 | Case Date: 05/28/2029 (case dates may vary bc random gen, but ensure order)
 //        Victim Name: Me; Perpetrator Name: Mr. Lake; Crime: Criminal Case Arson; Priority: 18 | Case Date: 10/19/2029
 //        Victim Name: Me; Perpetrator Name: John; Crime: Juvenile Case Arson; Priority: 38 | Case Date: 02/22/2030
 //        Victim Name: Me; Perpetrator Name: Max; Crime: Traffic Case Arson; Priority: 48 | Case Date: 04/27/2030
