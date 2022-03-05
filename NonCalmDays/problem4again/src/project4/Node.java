@@ -10,7 +10,8 @@ public class Node
 	{
 		 setCase(caseType);
 	}
- //create the accessor and mutator methods for the instance variables [6 points]
+	 
+ 	//create the accessor and mutator methods for the instance variables [6 points]
 
 	public Case getCase() {
 		return caseType;
@@ -35,4 +36,10 @@ public class Node
 	public void setNext(Node next) {
 		this.next = next;
 	}
+	
+	public String toString() 
+	{
+		return getCase().toString();
+	}
+	
 }

@@ -1,3 +1,5 @@
+package project4;
+import java.util.Arrays;
 import java.util.TreeMap;
 
 public class Crime
@@ -47,20 +49,13 @@ public class Crime
     //Combines the case type digit with the crime value to generate a priority number.
     public int getPriority() //[3 points]
     {
-        String[] str = typeOfCrime.split(" ");
+        String[] str = typeOfCrime.split(" ");// case digit and crime number
         return Integer.parseInt(Types.get(str[0] + " " + str[1]) + String.valueOf(crimes.get(String.join(" ", Arrays.copyOfRange(str, 2, str.length)))));
     }
     
     //toString
     public String toString()
     {
-        return "Victim Name: " + victimName + "; Perpetrator Name: " + perpetratorName + "; Crime: " + typeOfCrime + ";"; 
-    }
-    
-    public static void main() 
-    {
-    	Crime C = new Crime("Me", "Larry", "Civil First Degree Murder");
-    	
-    	System.out.println(C);
+        return "Victim Name: " + victimName + "; Perpetrator Name: " + perpetratorName + "; Crime: " + typeOfCrime + "; Case priority: " + getPriority(); 
     }
 }
