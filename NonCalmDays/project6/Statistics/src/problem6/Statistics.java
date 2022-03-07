@@ -138,35 +138,41 @@ public class Statistics {
 		
 //		System.out.println(getMode(TestNumbers));
 		
-		//Below are all of mr.lake's test cases
+		//-----Below are all of mr.lake's test cases
 		
 		//mean
 		
-		int[] lakepartB1 = {10, 18, 17};
+//		int[] lakepartB1 = {10, 18, 17};
+//		
+//		System.out.println(getMean(lakepartB1)); // 15.0
+//		
+//		int[] lakepartB2 = {10, 15};
+//		
+//		System.out.println(getMean(lakepartB2)); // 12.5
+//		
+//		//mode 
+//		
+//		int[] lakepartC1 = {10, 10, 13, 17, 17, 17, 18, 21};
+//		
+//		System.out.println(getMode(lakepartC1)); // 17
+//		
+//		int[] lakepartC2 = {54, 54, 54, 60, 60, 70, 85, 85};
+//		
+//		System.out.println(getMode(lakepartC2)); // 54
+//		
+//		int[] lakepartC3 = {20, 20, 20, 30, 30, 30, 40, 40, 40};
+//		
+//		System.out.println(getMode(lakepartC3)); // 20
+//		
+//		int[] lakepartC4 = {50};
+//		
+//		System.out.println(getMode(lakepartC4)); // 50
 		
-		System.out.println(getMean(lakepartB1)); // 15.0
+		//Below is a repeat of the above but extracted via text file
 		
-		int[] lakepartB2 = {10, 15};
+		ReadFile f = new ReadFile("./Statistics.txt");
 		
-		System.out.println(getMean(lakepartB2)); // 12.5
-		
-		//mode 
-		
-		int[] lakepartC1 = {10, 10, 13, 17, 17, 17, 18, 21};
-		
-		System.out.println(getMode(lakepartC1)); // 17
-		
-		int[] lakepartC2 = {54, 54, 54, 60, 60, 70, 85, 85};
-		
-		System.out.println(getMode(lakepartC2)); // 54
-		
-		int[] lakepartC3 = {20, 20, 20, 30, 30, 30, 40, 40, 40};
-		
-		System.out.println(getMode(lakepartC3)); // 20
-		
-		int[] lakepartC4 = {50};
-		
-		System.out.println(getMode(lakepartC4)); // 50
+		f.RunFromFile();
 
 	}
 

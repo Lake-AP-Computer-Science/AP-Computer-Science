@@ -1,0 +1,6 @@
+The mean of {10, 18, 17}
+The mean of {10, 15}
+The mode of {10, 10, 13, 17, 17, 17, 18, 21}
+The mode of {54, 54, 54, 60, 60, 70, 85, 85}
+The mode of {20, 20, 20, 30, 30, 30, 40, 40, 40}
+The mode of {50}

@@ -37,7 +37,8 @@ public class ReadFile
 	
 	public void RunFromFile()
 	{
-		ArrayList<String> Lines;
+		ArrayList<String> Lines = null;
+		
 		try {
 			Lines = getList();
 		} catch (Exception e) {
@@ -45,7 +46,29 @@ public class ReadFile
 			e.printStackTrace();
 		}
 		
-		//todo
+		for (String Line : Lines)
+		{
+			
+			String List = Line.replace("}", " ").replace("{", " ").split("  ")[1];
+			
+			int n = List.split(", ").length;
+			
+			int[] IntedList = new int[n];
+			
+			for (int i = 0; i < n; ++i)
+			{
+				IntedList[i] = Integer.parseInt(List.split(", ")[i].replace(" ", ""));
+			}
+ 			
+			if (Line.contains("mode"))
+			{
+				System.out.println(Statistics.getMode(IntedList));
+			}
+			else 
+			{
+				System.out.println(Statistics.getMean(IntedList));
+			}
+		}
 	}
 	
 }
