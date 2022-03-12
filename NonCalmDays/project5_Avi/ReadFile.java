@@ -44,7 +44,6 @@ public class ReadFile
 			String hexCode = Integer.toHexString(decimal);
 			colorList.add(Color.decode("#" + hexCode));
 		}
-		
 		return colorList;
 	}
 }

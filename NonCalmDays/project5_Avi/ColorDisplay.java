@@ -17,7 +17,7 @@ public class ColorDisplay extends JFrame
 	private JLabel colorFamilyLabel;
 	private ColorPassthroughFilter filter = new ColorPassthroughFilter(Color.gray);
 	
-	public static String fileName = "C:\\Users\\kingo\\Downloads\\Michael_Chang_-_AP_Comp_Sci_Problem_5_-_Color_Passthrough_Filter\\random_colors.txt";
+	public static String fileName = "random_colors.txt";
 	
 	public ColorDisplay() throws Exception 
 	{
