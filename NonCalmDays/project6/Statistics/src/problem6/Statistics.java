@@ -111,13 +111,11 @@ public class Statistics {
 		 * 
 		 * expected output: 16.75
 		 */
-		
-//		System.out.println(getMode(TestNumbers));
-		
+
 		/*
 		 * Test case 3 - sortList
 		 * 
-		 * expected output: {9, 10, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25}
+		 * expected output: 9, 10, 11, 12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25
 		 */
 		
 //		int[] a = {12, 13, 13, 13, 15, 15, 16, 16, 18, 22, 23, 24, 24, 25, 9, 11, 10};
@@ -170,10 +168,9 @@ public class Statistics {
 		
 		//Below is a repeat of the above but extracted via text file
 		
-		ReadFile f = new ReadFile("./Statistics.txt");
-		
-		f.RunFromFile();
-
+//		ReadFile f = new ReadFile("./Statistics.txt");
+//		
+//		f.RunFromFile();
 	}
 
 }
