@@ -12,8 +12,9 @@ public class Main {
 			
 			String Jason = "";
 			String Mike = "";
+			String Max = "";
 			
-			int[] data = DataProcessingII.createData(ThreadLocalRandom.current().nextInt(10, 10000));
+			int[] data = DataProcessingI.createData(ThreadLocalRandom.current().nextInt(10, 10000));
 			
 			Jason += ("Orignal List: ");
 	        for(int i = 0; i < data.length; i++)
@@ -26,12 +27,20 @@ public class Main {
 	        {
 	        	Mike += (data[i]);
 	        }
+	        
+	        Max += ("Orignal List: ");
+	        for(int i = 0; i < data.length; i++)
+	        {
+	        	Max += (data[i]);
+	        }
 	
 	        Jason += ("Sum: " + DataProcessing.sum(data));
 	        Mike += ("Sum: " + DataProcessingII.sum(data));
+	        Max += ("Sum: " + DataProcessing.sum(data));
 	
 	        Jason += ("Average: " + DataProcessing.average(data));
 	        Mike += ("Average: " + DataProcessingII.average(data));
+	        Max += ("Average: " + DataProcessingII.average(data));
 	
 	        int[] sortedData = DataProcessing.sortArray(data);
 	        Jason += ("Sorted Data: ");
@@ -48,9 +57,17 @@ public class Main {
 	        {
 	        	Mike += (sortedData[i]);
 	        }
+	        
+	        sortedData = DataProcessingII.sortArray(data);
+	        Max += ("Sorted Data: ");
+	        for(int i = 0; i < sortedData.length; i++)
+	        {
+	        	Max += (sortedData[i]);
+	        }
 	
 	        Jason += ("Range: " + DataProcessing.range(data));
 	        Mike += ("Range: " + DataProcessingII.range(data));
+	        Max += ("Range: " + DataProcessingII.range(data));
 	
 	        ArrayList<Integer> n = new ArrayList<Integer>();
 	        n = DataProcessing.findEvens(data);
@@ -70,7 +87,15 @@ public class Main {
 	        	Mike += (n.get(i));
 	        }
 	        
-	        System.out.println(Jason.equals(Mike));
+	        n = new ArrayList<Integer>();
+	        n = DataProcessing.findEvens(data);
+	        Max += ("Even Numbers: ");
+	        for(int i = 0; i < n.size(); i++)
+	        {
+	        	Max += (n.get(i));
+	        }
+	        
+	        System.out.println(Jason.equals(Mike) && Jason.equals(Max));
 		}
 	}
 
