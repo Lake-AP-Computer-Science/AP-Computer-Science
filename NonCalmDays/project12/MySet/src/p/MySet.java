@@ -1,7 +1,5 @@
 package p;
 
-import java.util.HashSet;
-
 public class MySet {
 	
 	char[] charArray;
@@ -28,14 +26,16 @@ public class MySet {
 	
 	public MySet union(MySet other)
 	{
-		MySet ReturnSet = new MySet(this.charArray);
+		MySet Union = new MySet(this.charArray);
 		
 		for (int i = 0; i < other.charArray.length; ++i)
 		{
-			ReturnSet = ReturnSet.add(other.charArray[i]);
+			Union = Union.add(other.charArray[i]);
 		}
 		
-		return ReturnSet;
+		this.charArray = Union.charArray;
+		
+		return Union;
 	}
 	
 	public MySet intersect(MySet other) 
@@ -49,6 +49,8 @@ public class MySet {
 				Intersect = Intersect.add(c);
 			}
 		}
+		
+		this.charArray = Intersect.charArray;
 		
 		return Intersect;
 	}
@@ -69,7 +71,9 @@ public class MySet {
 		
 		newCharArr[this.charArray.length] = c;
 		
-		return new MySet(newCharArr);
+		this.charArray = newCharArr;
+		
+		return this;
 	}
 	
 	public MySet remove(char c) 
@@ -89,9 +93,9 @@ public class MySet {
 			}
 		}
 		
-		return new MySet(newCharArr);
+		this.charArray = newCharArr;
 		
-		//return this;
+		return this;
 	} //you can add more methods like contains
 	
 	public String toString()
@@ -119,41 +123,66 @@ public class MySet {
 		//
 		//Test Cases for add() and remove()
 		//
-		System.out.println("Your Output: " + m);
+		System.out.println("Your Output:     " + m);
 		System.out.println("Expected Output: [a, b, c, d]\n");
-		System.out.println("Your Output: " + m.add('a'));
+		System.out.println("Your Output:     " + m.add('a'));
 		System.out.println("Expected Output: [a, b, c, d]\n");
-		System.out.println("Your Output: " + m.remove('a'));
+		System.out.println("Your Output:     " + m.remove('a'));
 		System.out.println("Expected Output: [b, c, d]\n");
-		System.out.println("Your Output: " + m.add('z'));
-		System.out.println("Expected Output: [a, b, c, d, z]\n");
-		System.out.println("Your Output: " + m.remove('z'));
-		System.out.println("Expected Output: [a, b, c, d]\n");
-		System.out.println("Your Output: " + m.add('a'));
-		System.out.println("Expected Output: [a, b, c, d]\n\n");
+		System.out.println("Your Output:     " + m.add('z'));
+		System.out.println("Expected Output: [b, c, d, z]\n");
+		System.out.println("Your Output:     " + m.remove('z'));
+		System.out.println("Expected Output: [b, c, d]\n");
+		System.out.println("Your Output:     " + m.add('a'));
+		System.out.println("Expected Output: [b, c, d, a]\n\n");
 	
-		System.out.println("Your Output: " + n.add('b'));
+		System.out.println("Your Output:     " + n.add('b'));
 		System.out.println("Expected Output: [a, b, c, d, e, f, g]\n");
-		System.out.println("Your Output: " + n.remove('d'));
+		System.out.println("Your Output:     " + n.remove('d'));
 		System.out.println("Expected Output: [a, b, c, e, f, g]\n");
+		System.out.println("Your Output:     " + n.remove('c'));
+		System.out.println("Expected Output: [a, b, e, f, g]\n\n");
 		
 		//
 		//Test Cases for union()
 		//
-		System.out.println("Your Output: " + a.union(b));
+		System.out.println("Your Output:     " + a.union(b));
 		System.out.println("Expected Output: [a, b, c, d, g, z, 1, 2, 9, 0]\n");
 		//order does not matter (make sure there are these 10 characters though)
-		System.out.println("Your Output: " + b.union(a));
+		System.out.println("Your Output:     " + a);
+		System.out.println("Expected Output: [a, b, c, d, g, z, 1, 2, 9, 0]\n");
+		//order does not matter (make sure there are these 3 characters though)
+		
+		a = new MySet("abc129".toCharArray());
+		b = new MySet("zdga902".toCharArray());
+		
+		System.out.println("Your Output:     " + b.union(a));
 		System.out.println("Expected Output: [a, b, c, d, g, z, 1, 2, 9, 0]\n");
 		//order does not matter (make sure there are these 10 characters though)
+		System.out.println("Your Output:     " + b);
+		System.out.println("Expected Output: [a, b, c, d, g, z, 1, 2, 9, 0]\n");
+		//order does not matter (make sure there are these 3 characters though)
+		
+		a = new MySet("abc129".toCharArray());
+		b = new MySet("zdga902".toCharArray());
 		
 		//
 		//Test Cases for intersect()
 		//
-		System.out.println("Your Output: " + a.intersect(b));
+		System.out.println("Your Output:     " + a.intersect(b));
 		System.out.println("Expected Output: [a, 2, 9]\n");
 		//order does not matter (make sure there are these 3 characters though)
-		System.out.println("Your Output: " + b.intersect(a));
+		System.out.println("Your Output:     " + a);
+		System.out.println("Expected Output: [a, 2, 9]\n");
+		//order does not matter (make sure there are these 3 characters though)
+		
+		a = new MySet("abc129".toCharArray());
+		b = new MySet("zdga902".toCharArray());
+		
+		System.out.println("Your Output:     " + b.intersect(a));
+		System.out.println("Expected Output: [a, 2, 9]\n");
+		//order does not matter (make sure there are these 3 characters though)
+		System.out.println("Your Output:     " + b);
 		System.out.println("Expected Output: [a, 2, 9]\n");
 		//order does not matter (make sure there are these 3 characters though)
 	}
