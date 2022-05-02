@@ -2,10 +2,6 @@
 
 A collective GitHub Repository of every AP Compsci project we will ever do in Mr.Lake's class.
 
-## Inspiring?
-
-**If you're "getting inspriation" from the repository, please don't just copy and paste stuff word for word, I am coding a Python script to shuffle order and variable names for a reason, please run it (when finished) in the "./Swapper/" folder**
-
 ## Questions, Bugs & Concerns?
 
 File an issue at the top or just send a SMS in the groupchat
